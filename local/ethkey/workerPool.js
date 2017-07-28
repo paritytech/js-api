@@ -102,4 +102,4 @@ class WorkerPool {
   }
 }
 
-export default new WorkerPool();
+module.exports = new WorkerPool();

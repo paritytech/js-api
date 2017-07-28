@@ -16,7 +16,7 @@
 
 let instance = null;
 
-export default class Logging {
+class Logging {
   constructor (updateSubscriptions) {
     this._updateSubscriptions = updateSubscriptions;
 
@@ -42,3 +42,5 @@ export default class Logging {
     });
   }
 }
+
+module.exports = Logging;

@@ -17,7 +17,7 @@
 import { inAddress, inNumber10, inOptions } from '../../format/input';
 import { outAddress } from '../../format/output';
 
-export default class Personal {
+class Personal {
   constructor (provider) {
     this._provider = provider;
   }
@@ -44,3 +44,5 @@ export default class Personal {
       .send('personal_unlockAccount', inAddress(account), password, inNumber10(duration));
   }
 }
+
+module.exports = Personal;

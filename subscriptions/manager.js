@@ -32,7 +32,7 @@ const events = {
   'signer_requestsToConfirm': { module: 'signer' }
 };
 
-export default class Manager {
+class Manager {
   constructor (api) {
     this._api = api;
 
@@ -132,6 +132,6 @@ export default class Manager {
   }
 }
 
-export {
-  events
-};
+Manager.events = events;
+
+module.exports = Manager;

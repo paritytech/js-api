@@ -17,7 +17,7 @@
 import { inAddress, inAddresses, inBlockNumber, inData, inDeriveHash, inDeriveIndex, inHex, inNumber16, inOptions } from '../../format/input';
 import { outAccountInfo, outAddress, outAddresses, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outRecentDapps, outTransaction, outVaultMeta } from '../../format/output';
 
-export default class Parity {
+class Parity {
   constructor (provider) {
     this._provider = provider;
   }
@@ -566,3 +566,5 @@ export default class Parity {
       .send('parity_wsUrl');
   }
 }
+
+module.exports = Parity;

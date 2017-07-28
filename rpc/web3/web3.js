@@ -16,7 +16,7 @@
 
 import { inHex } from '../../format/input';
 
-export default class Web3 {
+class Web3 {
   constructor (provider) {
     this._provider = provider;
   }
@@ -31,3 +31,5 @@ export default class Web3 {
       .send('web3_sha3', inHex(hexStr));
   }
 }
+
+module.exports = Web3;

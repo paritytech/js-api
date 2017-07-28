@@ -22,7 +22,7 @@ import { decryptPrivateKey } from '../ethkey';
 const NULL_ADDRESS = '0x0000000000000000000000000000000000000000';
 const LS_STORE_KEY = '_parity::localAccounts';
 
-export default class Accounts {
+class Accounts {
   persist = debounce(() => {
     this._lastState = JSON.stringify(this);
 
@@ -221,3 +221,5 @@ export default class Accounts {
     };
   }
 }
+
+module.exports = Accounts;

@@ -18,7 +18,7 @@ import PubsubBase from '../pubsubBase';
 import { inAddress, inBlockNumber, inHex, inNumber16, inOptions, inFilter } from '../../format/input';
 import { outAddress, outBlock, outNumber, outTransaction, outSyncing, outReceipt, outLog } from '../../format/output';
 
-export default class Eth extends PubsubBase {
+class Eth extends PubsubBase {
   constructor (provider) {
     super(provider);
     this._api = 'parity';
@@ -225,3 +225,5 @@ export default class Eth extends PubsubBase {
     return this.addListener(this._api, 'eth_getWork', callback);
   }
 }
+
+module.exports = Eth;

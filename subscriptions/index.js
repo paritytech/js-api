@@ -14,6 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-export Logging from './logging';
+const Logging = require('./logging');
+const Manager = require('./manager');
 
-export default from './manager';
+Manager.Logging = Logging;
+
+module.exports = Manager;

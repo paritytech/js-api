@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-export default class PubsubBase {
+class PubSubBase {
   // Provider for websocket pubsub transport
   constructor (provider) {
     this._provider = provider;
@@ -35,3 +35,5 @@ export default class PubsubBase {
     return this.removeListener(subscriptionIds);
   }
 }
+
+module.exports = PubSubBase;

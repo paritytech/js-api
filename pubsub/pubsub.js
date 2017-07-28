@@ -20,7 +20,7 @@ import Net from './net';
 
 import { isFunction } from '../util/types';
 
-export default class Pubsub {
+class Pubsub {
   constructor (provider) {
     if (!provider || !isFunction(provider.subscribe)) {
       throw new Error('Pubsub API needs transport with subscribe() function defined. (WebSocket)');
@@ -48,3 +48,5 @@ export default class Pubsub {
     return this._parity.removeListener(subscriptionIds);
   }
 }
+
+module.exports = PubSub;

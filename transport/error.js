@@ -42,7 +42,7 @@ export const ERROR_CODES = {
   INVALID_PARAMS: -32602
 };
 
-export default class TransportError extends ExtendableError {
+class TransportError extends ExtendableError {
   static requestRejected (method = null) {
     return new TransportError(method, ERROR_CODES.REQUEST_REJECTED, 'Request has been rejected.');
   }
@@ -59,3 +59,5 @@ export default class TransportError extends ExtendableError {
     this.text = message;
   }
 }
+
+module.exports = TransportError;

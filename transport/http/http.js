@@ -19,7 +19,7 @@ import JsonRpcBase from '../jsonRpcBase';
 import TransportError from '../error';
 
 /* global fetch */
-export default class Http extends JsonRpcBase {
+class Http extends JsonRpcBase {
   constructor (url, connectTimeout = 1000) {
     super();
 
@@ -101,3 +101,5 @@ export default class Http extends JsonRpcBase {
     this._url = url;
   }
 }
+
+module.exports = Http;

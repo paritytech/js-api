@@ -17,7 +17,7 @@
 import { inData, inNumber16, inOptions } from '../../format/input';
 import { outSignerRequest } from '../../format/output';
 
-export default class Signer {
+class Signer {
   constructor (provider) {
     this._provider = provider;
   }
@@ -63,3 +63,5 @@ export default class Signer {
       .send('signer_signerEnabled');
   }
 }
+
+module.exports = Signer;

@@ -16,7 +16,7 @@
 
 import { createKeyObject, decryptPrivateKey } from '../ethkey';
 
-export default class Account {
+class Account {
   constructor (persist, data = {}) {
     const {
       keyObject = null,
@@ -110,3 +110,5 @@ export default class Account {
     };
   }
 }
+
+module.exports = Account;

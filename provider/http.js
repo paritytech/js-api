@@ -16,7 +16,7 @@
 
 import { Http as Transport } from '../transport';
 
-export default class Http extends Transport {
+class Http extends Transport {
   send = (method, params, callback) => {
     this
       ._execute(method, params)
@@ -24,3 +24,5 @@ export default class Http extends Transport {
       .catch((error) => callback(error));
   }
 }
+
+module.exports = Http;

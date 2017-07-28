@@ -16,7 +16,7 @@
 
 import { Ws as Transport } from '../transport';
 
-export default class Ws extends Transport {
+class Ws extends Transport {
   send = (method, params, callback) => {
     this
       ._execute(method, params)
@@ -24,3 +24,5 @@ export default class Ws extends Transport {
       .catch((error) => callback(error));
   }
 }
+
+module.exports = Ws;

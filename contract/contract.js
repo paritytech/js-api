@@ -18,7 +18,7 @@ import Abi from '@parity/abi';
 
 let nextSubscriptionId = 0;
 
-export default class Contract {
+class Contract {
   constructor (api, abi) {
     if (!api) {
       throw new Error('API instance needs to be provided to Contract');
@@ -559,3 +559,5 @@ export default class Contract {
       });
   }
 }
+
+module.exports = Contract;

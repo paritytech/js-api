@@ -17,7 +17,7 @@
 import { inBlockNumber, inData, inHex, inNumber16, inOptions, inTraceFilter, inTraceType } from '../../format/input';
 import { outTraces, outTraceReplay } from '../../format/output';
 
-export default class Trace {
+class Trace {
   constructor (provider) {
     this._provider = provider;
   }
@@ -64,3 +64,5 @@ export default class Trace {
       .then(outTraces);
   }
 }
+
+module.exports = Trace;

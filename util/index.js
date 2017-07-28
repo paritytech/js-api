@@ -24,7 +24,7 @@ import { sha3 } from './sha3';
 import { isArray, isFunction, isHex, isInstanceOf, isString } from './types';
 import { createIdentityImg } from './identity';
 
-export default {
+module.exports = {
   abiDecode,
   abiEncode,
   abiUnencode,

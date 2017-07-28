@@ -16,7 +16,7 @@
 
 import { outNumber } from '../../format/output';
 
-export default class Net {
+class Net {
   constructor (provider) {
     this._provider = provider;
   }
@@ -37,3 +37,4 @@ export default class Net {
       .send('net_version');
   }
 }
+module.exports = Net;

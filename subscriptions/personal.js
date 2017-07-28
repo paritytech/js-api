@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-export default class Personal {
+class Personal {
   constructor (updateSubscriptions, api, subscriber) {
     this._subscriber = subscriber;
     this._api = api;
@@ -128,3 +128,5 @@ export default class Personal {
     });
   }
 }
+
+module.exports = Personal;

@@ -16,7 +16,7 @@
 
 import { inHex } from '../../format/input';
 
-export default class Db {
+class Db {
   constructor (transport) {
     this._transport = transport;
   }
@@ -41,3 +41,5 @@ export default class Db {
       .send('db_putString', dbName, keyName, stringData);
   }
 }
+
+module.exports = Db;

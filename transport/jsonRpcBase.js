@@ -17,7 +17,7 @@
 import EventEmitter from 'eventemitter3';
 import { Logging } from '../subscriptions';
 
-export default class JsonRpcBase extends EventEmitter {
+class JsonRpcBase extends EventEmitter {
   constructor () {
     super();
 
@@ -143,3 +143,5 @@ export default class JsonRpcBase extends EventEmitter {
     }
   }
 }
+
+module.exports = JsonRpcBase;

@@ -16,7 +16,7 @@
 
 import BigNumber from 'bignumber.js';
 
-export default class Eth {
+class Eth {
   constructor (updateSubscriptions, api) {
     this._api = api;
     this._updateSubscriptions = updateSubscriptions;
@@ -56,3 +56,5 @@ export default class Eth {
       .catch(() => nextTimeout());
   }
 }
+
+module.exports = Eth;

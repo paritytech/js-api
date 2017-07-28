@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-export default class Middleware {
+class Middleware {
   constructor (transport) {
     this._transport = transport;
     this._handlers = {};
@@ -42,3 +42,5 @@ export default class Middleware {
     return this._transport._execute(method, params);
   }
 }
+
+module.exports = Middleware;

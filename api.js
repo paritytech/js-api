@@ -28,7 +28,7 @@ import { isFunction } from './util/types';
 
 import LocalAccountsMiddleware from '~/packages/api/local';
 
-export default class Api extends EventEmitter {
+class Api extends EventEmitter {
   constructor (provider, allowSubscriptions = true) {
     super();
 
@@ -204,3 +204,5 @@ export default class Api extends EventEmitter {
     WsSecure: WsSecureTransport
   }
 }
+
+module.exports = Api;

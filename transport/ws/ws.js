@@ -21,7 +21,7 @@ import JsonRpcBase from '../jsonRpcBase';
 import TransportError from '../error';
 
 /* global WebSocket */
-export default class Ws extends JsonRpcBase {
+class Ws extends JsonRpcBase {
   // token is optional (secure API)
   constructor (url, token = null, autoconnect = true) {
     super();
@@ -395,3 +395,5 @@ export default class Ws extends JsonRpcBase {
     return Math.min(R * T * Math.pow(F, N), M);
   }
 }
+
+module.exports = Ws;

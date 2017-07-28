@@ -18,7 +18,7 @@ import PubsubBase from '../pubsubBase';
 import { inAddress, inBlockNumber, inData, inHex, inDeriveHash, inDeriveIndex } from '../../format/input';
 import { outAccountInfo, outAddress, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outTransaction, outAddresses, outRecentDapps, outVaultMeta } from '../../format/output';
 
-export default class Parity extends PubsubBase {
+class Parity extends PubsubBase {
   constructor (provider) {
     super(provider);
     this._api = 'parity';
@@ -353,3 +353,5 @@ export default class Parity extends PubsubBase {
     }, [inAddress(address), password, inDeriveIndex(index), !!shouldSave]);
   }
 }
+
+module.exports = Parity;

@@ -17,7 +17,7 @@ import PubsubBase from '../pubsubBase';
 
 import { outNumber } from '../../format/output';
 
-export default class Net extends PubsubBase {
+class Net extends PubsubBase {
   constructor (provider) {
     super(provider);
     this._api = 'parity';
@@ -40,3 +40,5 @@ export default class Net extends PubsubBase {
     return this.addListener(this._api, 'net_listening', callback);
   }
 }
+
+module.exports = Net;

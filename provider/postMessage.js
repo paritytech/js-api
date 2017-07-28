@@ -18,7 +18,7 @@ import EventEmitter from 'eventemitter3';
 
 const METHOD_REQUEST_TOKEN = 'shell_requestNewToken';
 
-export default class PostMessage extends EventEmitter {
+class PostMessage extends EventEmitter {
   id = 0;
   _messages = {};
   _queued = [];
@@ -158,3 +158,5 @@ export default class PostMessage extends EventEmitter {
     }
   }
 }
+
+module.exports = PostMessage;

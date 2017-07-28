@@ -16,7 +16,7 @@
 
 import { outTransaction } from '../format/output';
 
-export default class Signer {
+class Signer {
   constructor (updateSubscriptions, api, subscriber) {
     this._subscriber = subscriber;
     this._api = api;
@@ -89,3 +89,5 @@ export default class Signer {
     });
   }
 }
+
+module.exports = Signer;

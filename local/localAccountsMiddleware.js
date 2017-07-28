@@ -22,7 +22,7 @@ import { inNumber16 } from '../format/input';
 import { phraseToWallet, phraseToAddress, verifySecret } from './ethkey';
 import { randomPhrase } from '@parity/wordlist';
 
-export default class LocalAccountsMiddleware extends Middleware {
+class LocalAccountsMiddleware extends Middleware {
   constructor (transport) {
     super(transport);
 
@@ -282,3 +282,5 @@ export default class LocalAccountsMiddleware extends Middleware {
     });
   }
 }
+
+module.exports = LocalAccountsMiddleware;

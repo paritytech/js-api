@@ -17,7 +17,7 @@
 import { inAddress, inBlockNumber, inData, inFilter, inHash, inHex, inNumber16, inOptions } from '../../format/input';
 import { outAddress, outBlock, outLog, outNumber, outReceipt, outSyncing, outTransaction } from '../../format/output';
 
-export default class Eth {
+class Eth {
   constructor (provider) {
     this._provider = provider;
   }
@@ -319,3 +319,5 @@ export default class Eth {
       .send('eth_unregister');
   }
 }
+
+module.exports = Eth;

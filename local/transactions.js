@@ -144,4 +144,4 @@ class Transactions {
   }
 }
 
-export default new Transactions();
+module.exports = new Transactions();

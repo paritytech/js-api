@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-export default class Shh {
+class Shh {
   constructor (transport) {
     this._transport = transport;
   }
@@ -89,3 +89,5 @@ export default class Shh {
       .unsubscribe(subscriptionId);
   }
 }
+
+module.exports = Shh;
