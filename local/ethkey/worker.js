@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { bytesToHex } from '../../util/format';
-import { extern, slice } from './ethkey.js';
+const { bytesToHex } = require('../../util/format');
+const { extern, slice } = require('./ethkey.js');
 
 const isWorker = typeof self !== 'undefined';
 

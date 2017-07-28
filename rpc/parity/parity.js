@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { inAddress, inAddresses, inBlockNumber, inData, inDeriveHash, inDeriveIndex, inHex, inNumber16, inOptions } from '../../format/input';
-import { outAccountInfo, outAddress, outAddresses, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outRecentDapps, outTransaction, outVaultMeta } from '../../format/output';
+const { inAddress, inAddresses, inBlockNumber, inData, inDeriveHash, inDeriveIndex, inHex, inNumber16, inOptions } = require('../../format/input');
+const { outAccountInfo, outAddress, outAddresses, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outRecentDapps, outTransaction, outVaultMeta } = require('../../format/output');
 
 class Parity {
   constructor (provider) {

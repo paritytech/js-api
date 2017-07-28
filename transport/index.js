@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Ws from './ws';
+const Ws = require('./ws');
 
-import Http from './http';
-import TransportError from './error';
-import Middleware from './middleware';
+const Http = require('./http');
+const TransportError = require('./error');
+const Middleware = require('./middleware');
 
 const WsSecure = Ws;
 

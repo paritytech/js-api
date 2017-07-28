@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { TEST_WS_URL, mockWs } from '../../../../test/mockRpc';
-import Ws from './ws';
+const { TEST_WS_URL, mockWs } = require('../../../../test/mockRpc');
+const Ws = require('./ws');
 
 describe('api/transport/ws', () => {
   let transport;

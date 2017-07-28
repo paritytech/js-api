@@ -14,14 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
+const BigNumber = require('bignumber.js');
 
-import {
-  inAddress, inBlockNumber, inData, inFilter, inHex,
-  inNumber10, inNumber16, inOptions, inTraceType,
-  inDeriveHash, inDeriveIndex
-} from './input';
-import { isAddress } from '../../../test/types';
+const { inAddress, inBlockNumber, inData, inFilter, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex } = require('./input');
+const { isAddress } = require('../../../test/types');
 
 describe('api/format/input', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';

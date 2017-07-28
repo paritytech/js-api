@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { TEST_HTTP_URL, mockHttp } from '../../../../test/mockRpc';
+const { TEST_HTTP_URL, mockHttp } = require('../../../../test/mockRpc');
 
-import { Http, PromiseProvider } from '../../provider';
-import Personal from './personal';
+const { Http, PromiseProvider } = require('../../provider');
+const Personal = require('./personal');
 
 const instance = new Personal(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
 

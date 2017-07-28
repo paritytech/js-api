@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Abi from '@parity/abi';
-import Func from '@parity/abi/spec/function';
+const Abi = require('@parity/abi');
+const Func = require('@parity/abi/spec/function');
 
-import { abiDecode } from './decode';
-import { cleanupValue } from './format';
-import { sha3 } from './sha3';
+const { abiDecode } = require('./decode');
+const { cleanupValue } = require('./format');
+const { sha3 } = require('./sha3');
 
 function encodeMethodCallAbi (methodAbi = {}, values = []) {
   const func = new Func(methodAbi);

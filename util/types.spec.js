@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import sinon from 'sinon';
+const sinon = require('sinon');
 
-import { isArray, isError, isFunction, isHex, isInstanceOf, isObject, isString } from './types';
-import Eth from '../rpc/eth';
+const { isArray, isError, isFunction, isHex, isInstanceOf, isObject, isString } = require('./types';
+const Eth = require('../rpc/eth';
 
 describe('api/util/types', () => {
   describe('isArray', () => {

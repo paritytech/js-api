@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import EventEmitter from 'eventemitter3';
-import { Logging } from '../subscriptions';
+const EventEmitter = require('eventemitter3');
+const { Logging } = require('../subscriptions');
 
 class JsonRpcBase extends EventEmitter {
   constructor () {

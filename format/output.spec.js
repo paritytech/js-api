@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
+const BigNumber = require('bignumber.js');
 
-import { outBlock, outAccountInfo, outAddress, outChainStatus, outDate, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeer, outPeers, outReceipt, outRecentDapps, outSyncing, outTransaction, outTrace, outVaultMeta } from './output';
-import { isAddress, isBigNumber, isInstanceOf } from '../../../test/types';
+const { outBlock, outAccountInfo, outAddress, outChainStatus, outDate, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeer, outPeers, outReceipt, outRecentDapps, outSyncing, outTransaction, outTrace, outVaultMeta } = require('./output');
+const { isAddress, isBigNumber, isInstanceOf } = require('../../../test/types');
 
 describe('api/format/output', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';

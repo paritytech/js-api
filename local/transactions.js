@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { toHex } from '../util/format';
-import { TransportError } from '../transport';
+const { toHex } = require('../util/format');
+const { TransportError } = require('../transport');
 
 const AWAITING = Symbol('awaiting');
 const LOCKED = Symbol('locked');

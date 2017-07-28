@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import ExtendableError from 'es6-error';
+const ExtendableError = require('es6-error');
 
 const ERROR_CODES = {
   UNSUPPORTED_REQUEST: -32000,

@@ -14,16 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Db from './db';
-import Eth from './eth';
-import Parity from './parity';
-import Net from './net';
-import Personal from './personal';
-import Shell from './shell';
-import Shh from './shh';
-import Signer from './signer';
-import Trace from './trace';
-import Web3 from './web3';
+const Db = require('./db');
+const Eth = require('./eth');
+const Parity = require('./parity');
+const Net = require('./net');
+const Personal = require('./personal');
+const Shell = require('./shell');
+const Shh = require('./shh');
+const Signer = require('./signer');
+const Trace = require('./trace');
+const Web3 = require('./web3');
 
 module.exports = {
   Db,

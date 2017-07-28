@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { randomPhrase } from '@parity/wordlist';
-import { phraseToAddress, phraseToWallet } from './';
+const { randomPhrase } = require('@parity/wordlist');
+const { phraseToAddress, phraseToWallet } = require('./index');
 
 // TODO: Skipping until Node.js 8.0 comes out and we can test WebAssembly
 describe.skip('api/local/ethkey', () => {

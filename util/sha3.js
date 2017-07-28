@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { keccak_256 } from 'js-sha3'; // eslint-disable-line
+const { keccak_256 } = require('js-sha3'); // eslint-disable-line
 
-import { hexToBytes } from './format';
-import { isHex } from './types';
+const { hexToBytes } = require('./format');
+const { isHex } = require('./types');
 
 function sha3 (value, options) {
   const forceHex = options && options.encoding === 'hex';

@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { inAddress, inNumber10, inOptions } from '../../format/input';
-import { outAddress } from '../../format/output';
+const { inAddress, inNumber10, inOptions } = require('../../format/input');
+const { outAddress } = require('../../format/output');
 
 class Personal {
   constructor (provider) {

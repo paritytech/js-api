@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { inAddress, inBlockNumber, inData, inFilter, inHash, inHex, inNumber16, inOptions } from '../../format/input';
-import { outAddress, outBlock, outLog, outNumber, outReceipt, outSyncing, outTransaction } from '../../format/output';
+const { inAddress, inBlockNumber, inData, inFilter, inHash, inHex, inNumber16, inOptions } = require('../../format/input');
+const { outAddress, outBlock, outLog, outNumber, outReceipt, outSyncing, outTransaction } = require('../../format/output');
 
 class Eth {
   constructor (provider) {

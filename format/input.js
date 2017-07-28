@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
+const BigNumber = require('bignumber.js');
 
-import { isArray, isHex, isInstanceOf, isString } from '../util/types';
-import { padLeft, toHex } from '../util/format';
+const { isArray, isHex, isInstanceOf, isString } = require('../util/types');
+const { padLeft, toHex } = require('../util/format');
 
 function inAddress (address) {
   // TODO: address validation if we have upper-lower addresses

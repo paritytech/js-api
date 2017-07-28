@@ -14,10 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Account from './account';
-import localStore from 'store';
-import { debounce } from 'lodash';
-import { decryptPrivateKey } from '../ethkey';
+const localStore = require('store');
+const { debounce } = require('lodash');
+
+const Account = require('./account');
+const { decryptPrivateKey } = require('../ethkey');
 
 const NULL_ADDRESS = '0x0000000000000000000000000000000000000000';
 const LS_STORE_KEY = '_parity::localAccounts';

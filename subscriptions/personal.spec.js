@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import sinon from 'sinon';
+const sinon = require('sinon');
 
-import Personal from './personal';
+const Personal = require('./personal');
 
 const TEST_DEFAULT = '0xfa64203C044691aA57251aF95f4b48d85eC00Dd5';
 const TEST_INFO = {

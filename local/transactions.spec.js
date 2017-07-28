@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import transactions from './transactions';
-import { TransportError } from '../transport/error';
+const transactions = require('./transactions');
+const { TransportError } = require('../transport/error');
 
 const DUMMY_TX = 'dummy';
 

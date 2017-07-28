@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
-import { TEST_WS_URL, mockWs } from '../../../test/mockRpc';
-import { isBigNumber } from '../../../test/types';
+const BigNumber = require('bignumber.js');
+const { TEST_WS_URL, mockWs } = require('../../../test/mockRpc');
+const { isBigNumber } = require('../../../test/types');
 
-import { WsSecure } from '../provider';
-import Pubsub from './pubsub';
+const { WsSecure } = require('../provider');
+const Pubsub = require('./pubsub');
 
 describe('api/pubsub/Pubsub', () => {
   let scope;

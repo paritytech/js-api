@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Ws from './ws';
+const Ws = require('./ws');
 
 const ws = new Ws('ws://localhost:8546/');
 

@@ -26,19 +26,23 @@
   },
   "devDependencies": {
     "chai": "^4.1.0",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "sinon": "^2.4.1"
   },
   "dependencies": {
     "@parity/abi": "paritytech/js-abi#414765a476d88b6fb9f3398c99a946021957d07a",
     "@parity/jsonrpc": "paritytech/js-jsonrpc#89a6e441370f55d8fe995e27007f60da29b6672b",
-    "bignumber.js": "3.0.1",
+    "@parity/wordlist": "^1.1.0",
+    "bignumber.js": "^3.0.1",
     "blockies": "0.0.2",
-    "es6-error": "4.0.0",
-    "ethereumjs-tx": "1.2.5",
-    "eventemitter3": "2.0.2",
+    "es6-error": "^4.0.0",
+    "ethereumjs-tx": "^1.2.5",
+    "eventemitter3": "^2.0.2",
     "js-sha3": "0.5.5",
     "keythereum": "0.4.6",
+    "lodash": "^4.17.4",
     "node-fetch": "1.6.3",
-    "secp256k1": "3.2.5"
+    "secp256k1": "3.2.5",
+    "store": "^2.0.12"
   }
 }

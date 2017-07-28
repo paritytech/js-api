@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { inBlockNumber, inData, inHex, inNumber16, inOptions, inTraceFilter, inTraceType } from '../../format/input';
-import { outTraces, outTraceReplay } from '../../format/output';
+const { inBlockNumber, inData, inHex, inNumber16, inOptions, inTraceFilter, inTraceType } = require('../../format/input');
+const { outTraces, outTraceReplay } = require('../../format/output');
 
 class Trace {
   constructor (provider) {

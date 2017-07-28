@@ -14,12 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { isError } from '../util/types';
+const { isError } = require('../util/types');
 
-import Eth from './eth';
-import Logging from './logging';
-import Personal from './personal';
-import Signer from './signer';
+const Eth = require('./eth');
+const Logging = require('./logging');
+const Personal = require('./personal');
+const Signer = require('./signer');
 
 const events = {
   'logging': { module: 'logging' },

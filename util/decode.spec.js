@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
-import { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } from './decode';
+const BigNumber = require('bignumber.js');
+const { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } = require('./decode');
 
 describe('api/util/decode', () => {
   const METH = '0x70a08231';

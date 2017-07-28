@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { sha3 } from './sha3';
+const { sha3 } = require('./sha3');
 
 describe('api/util/sha3', () => {
   describe('sha3', () => {

@@ -14,18 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
-import sinon from 'sinon';
+const BigNumber = require('bignumber.js');
+const sinon = require('sinon');
 
-import Abi from '@parity/abi';
+const Abi = require('@parity/abi');
 
-import { TEST_HTTP_URL, mockHttp } from '../../../test/mockRpc';
+const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
 
-import { sha3 } from '../util/sha3';
+const { sha3 } = require('../util/sha3');
 
-import Api from '../api';
-import Contract from './contract';
-import { isInstanceOf, isFunction } from '../util/types';
+const Api = require('../api');
+const Contract = require('./contract');
+const { isInstanceOf, isFunction } = require('../util/types');
 
 const provider = new Api.Provider.Http(TEST_HTTP_URL, -1);
 const eth = new Api(provider);

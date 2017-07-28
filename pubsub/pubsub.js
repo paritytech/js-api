@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Eth from './eth';
-import Parity from './parity';
-import Net from './net';
+const Eth = require('./eth');
+const Parity = require('./parity');
+const Net = require('./net');
 
-import { isFunction } from '../util/types';
+const { isFunction } = require('../util/types');
 
 class Pubsub {
   constructor (provider) {

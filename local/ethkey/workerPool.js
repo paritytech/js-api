@@ -16,8 +16,9 @@
 
 // Allow a web worker in the browser, with a fallback for Node.js
 const hasWebWorkers = typeof Worker !== 'undefined';
-const KeyWorker = hasWebWorkers ? require('worker-loader!./worker')
-                                : require('./worker').KeyWorker;
+const KeyWorker = hasWebWorkers
+  ? require('worker-loader!./worker')
+  : require('./worker').KeyWorker;
 
 class WorkerContainer {
   busy = false;

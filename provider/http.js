@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { Http as Transport } from '../transport';
+const Transport = require('../transport').Http;
 
 class Http extends Transport {
   send = (method, params, callback) => {

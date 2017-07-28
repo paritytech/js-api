@@ -13,10 +13,10 @@
 
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
-import PubsubBase from '../pubsubBase';
+const PubsubBase = require('../pubsubBase');
 
-import { inAddress, inBlockNumber, inHex, inNumber16, inOptions, inFilter } from '../../format/input';
-import { outAddress, outBlock, outNumber, outTransaction, outSyncing, outReceipt, outLog } from '../../format/output';
+const { inAddress, inBlockNumber, inHex, inNumber16, inOptions, inFilter } = require('../../format/input');
+const { outAddress, outBlock, outNumber, outTransaction, outSyncing, outReceipt, outLog } = require('../../format/output');
 
 class Eth extends PubsubBase {
   constructor (provider) {

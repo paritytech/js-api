@@ -14,15 +14,15 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { isAddress as isAddressValid, toChecksumAddress } from '@parity/abi/util/address';
+const { isAddress as isAddressValid, toChecksumAddress } = require('@parity/abi/util/address');
 
-import { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } from './decode';
-import { abiEncode, abiUnencode, abiSignature, encodeMethodCallAbi } from './encode';
-import { bytesToHex, hexToAscii, asciiToHex, cleanupValue } from './format';
-import { fromWei, toWei } from './wei';
-import { sha3 } from './sha3';
-import { isArray, isFunction, isHex, isInstanceOf, isString } from './types';
-import { createIdentityImg } from './identity';
+const { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } = require('./decode');
+const { abiEncode, abiUnencode, abiSignature, encodeMethodCallAbi } = require('./encode');
+const { bytesToHex, hexToAscii, asciiToHex, cleanupValue } = require('./format');
+const { fromWei, toWei } = require('./wei');
+const { sha3 } = require('./sha3');
+const { isArray, isFunction, isHex, isInstanceOf, isString } = require('./types');
+const { createIdentityImg } = require('./identity');
 
 module.exports = {
   abiDecode,

@@ -14,13 +14,14 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import EthereumTx from 'ethereumjs-tx';
-import accounts from './accounts';
-import transactions from './transactions';
-import { Middleware } from '../transport';
-import { inNumber16 } from '../format/input';
-import { phraseToWallet, phraseToAddress, verifySecret } from './ethkey';
-import { randomPhrase } from '@parity/wordlist';
+const EthereumTx = require('ethereumjs-tx');
+
+const accounts = require('./accounts');
+const transactions = require('./transactions');
+const { Middleware } = require('../transport');
+const { inNumber16 } = require('../format/input');
+const { phraseToWallet, phraseToAddress, verifySecret } = require('./ethkey');
+const { randomPhrase } = require('@parity/wordlist');
 
 class LocalAccountsMiddleware extends Middleware {
   constructor (transport) {

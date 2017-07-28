@@ -13,9 +13,10 @@
 
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
-import PubsubBase from '../pubsubBase';
 
-import { outNumber } from '../../format/output';
+const PubsubBase = require('../pubsubBase');
+
+const { outNumber } = require('../../format/output');
 
 class Net extends PubsubBase {
   constructor (provider) {

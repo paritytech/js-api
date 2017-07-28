@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import PubsubBase from '../pubsubBase';
-import { inAddress, inBlockNumber, inData, inHex, inDeriveHash, inDeriveIndex } from '../../format/input';
-import { outAccountInfo, outAddress, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outTransaction, outAddresses, outRecentDapps, outVaultMeta } from '../../format/output';
+const PubsubBase = require('../pubsubBase');
+const { inAddress, inBlockNumber, inData, inHex, inDeriveHash, inDeriveIndex } = require('../../format/input');
+const { outAccountInfo, outAddress, outBlock, outChainStatus, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeers, outTransaction, outAddresses, outRecentDapps, outVaultMeta } = require('../../format/output');
 
 class Parity extends PubsubBase {
   constructor (provider) {

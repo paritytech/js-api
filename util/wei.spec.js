@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { _getUnitMultiplier, fromWei, toWei } from './wei';
+const { _getUnitMultiplier, fromWei, toWei } = require('./wei');
 
 describe('api/util/wei', () => {
   describe('_getUnitMultiplier', () => {

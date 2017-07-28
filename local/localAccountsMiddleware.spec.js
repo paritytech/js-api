@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import LocalAccountsMiddleware from './localAccountsMiddleware';
-import JsonRpcBase from '../transport/jsonRpcBase';
+const LocalAccountsMiddleware = require('./localAccountsMiddleware');
+const JsonRpcBase = require('../transport/jsonRpcBase');
 
 const RPC_RESPONSE = Symbol('RPC response');
 const ADDRESS = '0x00a329c0648769a73afac7f9381e08fb43dbea72';

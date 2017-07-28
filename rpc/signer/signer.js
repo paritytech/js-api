@@ -14,8 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { inData, inNumber16, inOptions } from '../../format/input';
-import { outSignerRequest } from '../../format/output';
+const { inData, inNumber16, inOptions } = require('../../format/input');
+const { outSignerRequest } = require('../../format/output');
 
 class Signer {
   constructor (provider) {

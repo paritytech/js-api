@@ -14,10 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { isHex } from './types';
+const { isHex } = require('./types');
 
-import Func from '@parity/abi/spec/function';
-import { fromParamType, toParamType } from '@parity/abi/spec/paramType/format';
+const Func = require('@parity/abi/spec/function';
+const { fromParamType, toParamType } = require('@parity/abi/spec/paramType/format');
 
 function decodeCallData (data) {
   if (!isHex(data)) {

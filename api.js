@@ -14,22 +14,20 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import EventEmitter from 'eventemitter3';
+const EventEmitter = require('eventemitter3');
 
-import Contract from './contract';
-import { PromiseProvider, Http as HttpProvider, PostMessage as PostMessageProvider, Ws as WsProvider, WsSecure as WsSecureProvider } from './provider';
-import { Http as HttpTransport, Ws as WsTransport, WsSecure as WsSecureTransport } from './transport';
+const Contract = require('./contract');
+const { PromiseProvider, Http as HttpProvider, PostMessage as PostMessageProvider, Ws as WsProvider, WsSecure as WsSecureProvider } = require('./provider');
+const { Http as HttpTransport, Ws as WsTransport, WsSecure as WsSecureTransport } = require('./transport');
 
-import { Db, Eth, Parity, Net, Personal, Shell, Shh, Signer, Trace, Web3 } from './rpc';
-import Subscriptions from './subscriptions';
-import Pubsub from './pubsub';
-import util from './util';
-import { isFunction } from './util/types';
-
-import LocalAccountsMiddleware from '~/packages/api/local';
+const { Db, Eth, Parity, Net, Personal, Shell, Shh, Signer, Trace, Web3 } = require('./rpc');
+const Subscriptions = require('./subscriptions');
+const Pubsub = require('./pubsub');
+const util = require('./util');
+const { isFunction } = require('./util/types');
 
 class Api extends EventEmitter {
-  constructor (provider, allowSubscriptions = true) {
+  constructor (provider, allowSubscriptions = true, middlewareClass) {
     super();
 
     if (!provider || !isFunction(provider.send)) {
@@ -57,13 +55,13 @@ class Api extends EventEmitter {
     if (allowSubscriptions) {
       this._subscriptions = new Subscriptions(this);
     }
-    // Doing a request here in test env would cause an error
-    if (LocalAccountsMiddleware && process.env.NODE_ENV !== 'test') {
+
+    if (middlewareClass) {
       const middleware = this.parity
         .nodeKind()
         .then((nodeKind) => {
           if (nodeKind.availability === 'public') {
-            return LocalAccountsMiddleware;
+            return middlewareClass;
           }
 
           return null;

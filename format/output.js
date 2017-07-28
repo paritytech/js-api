@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import BigNumber from 'bignumber.js';
+const BigNumber = require('bignumber.js');
 
-import { toChecksumAddress } from '@parity/abi/util/address';
+const { toChecksumAddress } = require('@parity/abi/util/address');
 
-import { isString } from '../util/types';
+const { isString } = require('../util/types');
 
 function outAccountInfo (infos) {
   return Object

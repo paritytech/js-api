@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import { TEST_HTTP_URL, mockHttp } from '../../../../test/mockRpc';
-import { isBigNumber } from '../../../../test/types';
+const { TEST_HTTP_URL, mockHttp } = require('../../../../test/mockRpc');
+const { isBigNumber } = require('../../../../test/types');
 
-import { Http, PromiseProvider } from '../../provider';
-import Net from './net';
+const { Http, PromiseProvider } = require('../../provider');
+const Net = require('./net');
 
 const instance = new Net(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
 

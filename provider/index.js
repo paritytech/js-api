@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import Ws from './ws';
+const Ws = require('./ws');
 
-import Http from './http';
-import PostMessage from './postMessage';
-import PromiseProvider from './promise';
+const Http = require('./http');
+const PostMessage = require('./postMessage');
+const PromiseProvider = require('./promise');
 
 const WsSecure = Ws;
 
