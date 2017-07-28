@@ -17,7 +17,13 @@
 const Transport = require('../transport').Ws;
 
 class Ws extends Transport {
-  send = (method, params, callback) => {
+  constructor (url, token, autoconnect) {
+    super(url, token, autoconnect);
+
+    this.send = this.send.bind(this);
+  }
+
+  send (method, params, callback) {
     this
       ._execute(method, params)
       .then((result) => callback(null, result))

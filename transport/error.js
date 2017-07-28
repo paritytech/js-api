@@ -43,17 +43,15 @@ const ERROR_CODES = {
 };
 
 class TransportError extends ExtendableError {
-  static requestRejected (method = null) {
-    return new TransportError(method, ERROR_CODES.REQUEST_REJECTED, 'Request has been rejected.');
-  }
-
   constructor (method, code, message) {
     const m = `${method}: ${code}: ${message}`;
 
     super(m);
 
     this.code = code;
-    this.type = Object.keys(ERROR_CODES).find((k) => ERROR_CODES[k] === code) || '';
+    this.type = Object
+      .keys(ERROR_CODES)
+      .find((key) => ERROR_CODES[key] === code) || '';
 
     this.method = method;
     this.text = message;
@@ -61,5 +59,9 @@ class TransportError extends ExtendableError {
 }
 
 TransportError.ERROR_CODES = ERROR_CODES;
+
+TransportError.requestRejected = function (method = null) {
+  return new TransportError(method, ERROR_CODES.REQUEST_REJECTED, 'Request has been rejected.');
+};
 
 module.exports = TransportError;

@@ -24,14 +24,16 @@ const NULL_ADDRESS = '0x0000000000000000000000000000000000000000';
 const LS_STORE_KEY = '_parity::localAccounts';
 
 class Accounts {
-  persist = debounce(() => {
-    this._lastState = JSON.stringify(this);
-
-    localStore.set(LS_STORE_KEY, this);
-  }, 100);
-
   constructor (data = localStore.get(LS_STORE_KEY) || {}) {
     this._lastState = JSON.stringify(data);
+
+    this.persist = debounce(() => {
+      this._lastState = JSON.stringify(this);
+
+      localStore.set(LS_STORE_KEY, this);
+    }, 100);
+
+    this._addAccount = this._addAccount.bind(this);
 
     window.addEventListener('storage', ({ key, newValue }) => {
       if (key !== LS_STORE_KEY) {
@@ -73,7 +75,7 @@ class Accounts {
     }
   }
 
-  _addAccount = (account) => {
+  _addAccount (account) {
     const { address } = account;
 
     if (address in this._store && this._store[address].uuid) {

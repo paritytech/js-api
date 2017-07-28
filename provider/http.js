@@ -17,7 +17,13 @@
 const Transport = require('../transport').Http;
 
 class Http extends Transport {
-  send = (method, params, callback) => {
+  constructor (url, connectTimeout) {
+    super(url, connectTimeout);
+
+    this.send = this.send.bind(this);
+  }
+
+  send (method, params, callback) {
     this
       ._execute(method, params)
       .then((result) => callback(null, result))

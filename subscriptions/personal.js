@@ -23,6 +23,10 @@ class Personal {
 
     this._lastDefaultAccount = '0x0';
     this._pollTimerId = null;
+
+    this._accountsInfo = this._accountsInfo.bind(this);
+    this._defaultAccount = this._defaultAccount.bind(this);
+    this._listAccounts = this._listAccounts.bind(this);
   }
 
   get isStarted () {
@@ -44,7 +48,7 @@ class Personal {
   // doesn't work. Since the defaultAccount is critical to operation, we poll in exactly
   // same way we do in ../eth (ala eth_blockNumber) and update. This should be moved
   // to pub-sub as it becomes available
-  _defaultAccount = (timerDisabled = false) => {
+  _defaultAccount (timerDisabled = false) {
     const nextTimeout = (timeout = 1000) => {
       if (!timerDisabled) {
         this._pollTimerId = setTimeout(() => {
@@ -66,7 +70,7 @@ class Personal {
       .catch(() => nextTimeout());
   }
 
-  _listAccounts = () => {
+  _listAccounts () {
     return this._api.eth
       .accounts()
       .then((accounts) => {
@@ -74,7 +78,7 @@ class Personal {
       });
   }
 
-  _accountsInfo = () => {
+  _accountsInfo () {
     return this._api.parity
       .accountsInfo()
       .then((info) => {

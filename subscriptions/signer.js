@@ -22,6 +22,8 @@ class Signer {
     this._api = api;
     this._updateSubscriptions = updateSubscriptions;
     this._started = false;
+
+    this._listRequests = this._listRequests.bind(this);
   }
 
   get isStarted () {
@@ -37,7 +39,7 @@ class Signer {
     ]);
   }
 
-  _listRequests = (doTimeout) => {
+  _listRequests (doTimeout) {
     const nextTimeout = (timeout = 1000) => {
       if (doTimeout) {
         setTimeout(() => {

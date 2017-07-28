@@ -17,8 +17,8 @@
 const EventEmitter = require('eventemitter3');
 
 const Contract = require('./contract');
-const { PromiseProvider, Http as HttpProvider, PostMessage as PostMessageProvider, Ws as WsProvider, WsSecure as WsSecureProvider } = require('./provider');
-const { Http as HttpTransport, Ws as WsTransport, WsSecure as WsSecureTransport } = require('./transport');
+const Providers = require('./provider');
+const Transports = require('./transport');
 
 const { Db, Eth, Parity, Net, Personal, Shell, Shh, Signer, Trace, Web3 } = require('./rpc');
 const Subscriptions = require('./subscriptions');
@@ -39,7 +39,7 @@ class Api extends EventEmitter {
       this._pubsub = new Pubsub(provider);
     }
 
-    this._provider = new PromiseProvider(provider);
+    this._provider = new Providers.PromiseProvider(provider);
 
     this._db = new Db(this._provider);
     this._eth = new Eth(this._provider);
@@ -185,22 +185,22 @@ class Api extends EventEmitter {
       timeout();
     });
   }
-
-  static util = util
-
-  static Provider = {
-    Http: HttpProvider,
-    PostMessage: PostMessageProvider,
-    Ws: WsProvider,
-    WsSecure: WsSecureProvider
-  }
-
-  // NOTE: kept for backwards compatibility
-  static Transport = {
-    Http: HttpTransport,
-    Ws: WsTransport,
-    WsSecure: WsSecureTransport
-  }
 }
+
+Api.util = util;
+
+Api.Provider = {
+  Http: Providers.Http,
+  PostMessage: Providers.PostMessage,
+  Ws: Providers.Ws,
+  WsSecure: Providers.WsSecure
+};
+
+// NOTE: kept for backwards compatibility
+Api.Transport = {
+  Http: Transports.Http,
+  Ws: Transports.Ws,
+  WsSecure: Transports.WsSecure
+};
 
 module.exports = Api;

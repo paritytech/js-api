@@ -16,7 +16,9 @@
 
 const sinon = require('sinon');
 
-const Manager, { events } = require('./manager');
+const Manager = require('./manager');
+
+const events = Manager.events;
 
 function newStub () {
   const start = () => manager._updateSubscriptions(manager.__test, null, 'test');

@@ -57,6 +57,17 @@ class Contract {
     if (api && api.patch && api.patch.contract) {
       api.patch.contract(this);
     }
+
+    this.getCallData = this.getCallData.bind(this);
+    this._pollCheckRequest = this._pollCheckRequest.bind(this);
+    this._pollTransactionReceipt = this._pollTransactionReceipt.bind(this);
+    this._bindFunction = this._bindFunction.bind(this);
+    this._bindEvent = this._bindEvent.bind(this);
+    this._subscribeToChanges = this._subscribeToChanges.bind(this);
+    this._unsubscribeFromChanges = this._unsubscribeFromChanges.bind(this);
+    this._subscribeToBlock = this._subscribeToBlock.bind(this);
+    this._subscribeToPendings = this._subscribeToPendings.bind(this);
+    this._sendSubscriptionChanges = this._sendSubscriptionChanges.bind(this);
   }
 
   get address () {
@@ -207,11 +218,11 @@ class Contract {
     return receipt;
   }
 
-  _pollCheckRequest = (requestId) => {
+  _pollCheckRequest (requestId) {
     return this._api.pollMethod('parity_checkRequest', requestId);
   }
 
-  _pollTransactionReceipt = (txhash, gas) => {
+  _pollTransactionReceipt (txhash, gas) {
     return this.api.pollMethod('eth_getTransactionReceipt', txhash, (receipt) => {
       if (!receipt || !receipt.blockNumber || receipt.blockNumber.eq(0)) {
         return false;
@@ -221,7 +232,7 @@ class Contract {
     });
   }
 
-  getCallData = (func, options, values) => {
+  getCallData (func, options, values) {
     let data = options.data;
 
     const tokens = func ? Abi.encodeTokens(func.inputParamTypes(), values) : null;
@@ -237,27 +248,21 @@ class Contract {
   _encodeOptions (func, options, values) {
     const data = this.getCallData(func, options, values);
 
-    return {
-      ...options,
-      data
-    };
+    return Object.assign({}, options, data);
   }
 
   _addOptionsTo (options = {}) {
-    return {
-      to: this._address,
-      ...options
-    };
+    return Object.assign({}, options, {
+      to: this._address
+    });
   }
 
-  _bindFunction = (func) => {
+  _bindFunction (func) {
     func.contract = this;
 
     func.call = (_options = {}, values = []) => {
       const rawTokens = !!_options.rawTokens;
-      const options = {
-        ..._options
-      };
+      const options = Object.assign({}, _options);
 
       delete options.rawTokens;
 
@@ -319,7 +324,7 @@ class Contract {
     return func;
   }
 
-  _bindEvent = (event) => {
+  _bindEvent (event) {
     event.subscribe = (options = {}, callback, autoRemove) => {
       return this._subscribe(event, options, callback, autoRemove);
     };
@@ -462,7 +467,7 @@ class Contract {
       });
   }
 
-  _subscribeToChanges = () => {
+  _subscribeToChanges () {
     const subscriptions = Object.values(this._subscriptions);
 
     const pendingSubscriptions = subscriptions
@@ -482,7 +487,7 @@ class Contract {
     }
   }
 
-  _unsubscribeFromChanges = () => {
+  _unsubscribeFromChanges () {
     const subscriptions = Object.values(this._subscriptions);
 
     const pendingSubscriptions = subscriptions
@@ -502,7 +507,7 @@ class Contract {
     }
   }
 
-  _subscribeToBlock = () => {
+  _subscribeToBlock () {
     this._api
       .subscribe('eth_blockNumber', (error) => {
         if (error) {
@@ -522,7 +527,7 @@ class Contract {
       });
   }
 
-  _subscribeToPendings = () => {
+  _subscribeToPendings () {
     const subscriptions = Object.values(this._subscriptions)
       .filter((s) => s.options.toBlock && s.options.toBlock === 'pending');
 
@@ -534,7 +539,7 @@ class Contract {
       });
   }
 
-  _sendSubscriptionChanges = (subscriptions) => {
+  _sendSubscriptionChanges (subscriptions) {
     return Promise
       .all(
         subscriptions.map((subscription) => {

@@ -14,22 +14,28 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const EventEmitter = require('eventemitter3';
+const EventEmitter = require('eventemitter3');
 
 const METHOD_REQUEST_TOKEN = 'shell_requestNewToken';
 
 class PostMessage extends EventEmitter {
-  id = 0;
-  _messages = {};
-  _queued = [];
-
   constructor (appId, destination) {
     super();
 
     this._appId = appId;
     this._destination = destination || window.parent;
 
-    window.addEventListener('message', this.receiveMessage, false);
+    this.id = 0;
+    this._messages = {};
+    this._queued = [];
+
+    this._receiveMessage = this._receiveMessage.bind(this);
+    this._send = this._send.bind(this);
+    this.send = this.send.bind(this);
+    this.subscribe = this.subscribe.bind(this);
+    this.unsubscribe = this.unsubscribe.bind(this);
+
+    window.addEventListener('message', this._receiveMessage, false);
   }
 
   setToken (token) {
@@ -56,7 +62,7 @@ class PostMessage extends EventEmitter {
     });
   }
 
-  _send = (message) => {
+  _send (message) {
     if (!this._token && message.data.method !== METHOD_REQUEST_TOKEN) {
       this._queued.push(message);
 
@@ -75,7 +81,7 @@ class PostMessage extends EventEmitter {
     this._destination.postMessage(postMessage, '*');
   }
 
-  send = (method, params, callback) => {
+  send (method, params, callback) {
     this._send({
       data: {
         method,
@@ -96,7 +102,7 @@ class PostMessage extends EventEmitter {
     this._queued = [];
   }
 
-  subscribe = (api, callback, params) => {
+  subscribe (api, callback, params) {
     // console.log('paritySubscribe', JSON.stringify(params), api, callback);
     return new Promise((resolve, reject) => {
       this._send({
@@ -116,7 +122,7 @@ class PostMessage extends EventEmitter {
   }
 
   // FIXME: Should return callback, not promise
-  unsubscribe = (subId) => {
+  unsubscribe (subId) {
     return new Promise((resolve, reject) => {
       this._send({
         data: {
@@ -137,7 +143,7 @@ class PostMessage extends EventEmitter {
     return this.unsubscribe('*');
   }
 
-  receiveMessage = ({ data: { id, error, from, to, token, result }, origin, source }) => {
+  _receiveMessage ({ data: { id, error, from, to, token, result }, origin, source }) {
     const isTokenValid = token
       ? token === this._token
       : true;

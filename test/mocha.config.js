@@ -14,6 +14,28 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+require('mock-local-storage');
+require('isomorphic-fetch');
+
+const es6Promise = require('es6-promise');
+es6Promise.polyfill();
+
 const chai = require('chai');
+const chaiAsPromised = require('chai-as-promised');
+const sinonChai = require('sinon-chai');
+const { JSDOM } = require('jsdom');
+const { WebSocket } = require('mock-socket');
+
+chai.use(chaiAsPromised);
+chai.use(sinonChai);
+
+const jsdom = new JSDOM('<!doctype html><html><body></body></html>');
 
 global.expect = chai.expect;
+global.WebSocket = WebSocket;
+
+global.document = jsdom.window.document;
+global.window = jsdom.window;
+global.window.localStorage = global.localStorage;
+global.navigator = global.window.navigator;
+global.location = global.window.location;

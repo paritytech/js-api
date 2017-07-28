@@ -19,7 +19,7 @@ const sinon = require('sinon');
 
 const Abi = require('@parity/abi');
 
-const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const { TEST_HTTP_URL, mockHttp } = require('../test/mockRpc');
 
 const { sha3 } = require('../util/sha3');
 

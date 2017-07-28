@@ -14,8 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { isAddress as isAddressValid, toChecksumAddress } = require('@parity/abi/util/address');
-
+const { isAddress, toChecksumAddress } = require('./address');
 const { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } = require('./decode');
 const { abiEncode, abiUnencode, abiSignature, encodeMethodCallAbi } = require('./encode');
 const { bytesToHex, hexToAscii, asciiToHex, cleanupValue } = require('./format');
@@ -30,7 +29,7 @@ module.exports = {
   abiUnencode,
   abiSignature,
   cleanupValue,
-  isAddressValid,
+  isAddressValid: isAddress,
   isArray,
   isFunction,
   isHex,

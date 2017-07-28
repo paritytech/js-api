@@ -20,7 +20,7 @@ const Net = require('./net');
 
 const { isFunction } = require('../util/types');
 
-class Pubsub {
+class PubSub {
   constructor (provider) {
     if (!provider || !isFunction(provider.subscribe)) {
       throw new Error('Pubsub API needs transport with subscribe() function defined. (WebSocket)');

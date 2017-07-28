@@ -27,6 +27,7 @@ class Http extends JsonRpcBase {
     this._url = url;
     this._connectTimeout = connectTimeout;
 
+    this._pollConnection = this._pollConnection.bind(this);
     this._pollConnection();
   }
 
@@ -84,7 +85,7 @@ class Http extends JsonRpcBase {
       });
   }
 
-  _pollConnection = () => {
+  _pollConnection () {
     if (this._connectTimeout <= 0) {
       return;
     }

@@ -163,19 +163,17 @@ function outPeer (peer) {
   const protocols = Object.keys(peer.protocols)
     .reduce((obj, key) => {
       if (peer.protocols[key]) {
-        obj[key] = {
-          ...peer.protocols[key],
+        obj[key] = Object.assign({}, peer.protocols[key], {
           difficulty: outNumber(peer.protocols[key].difficulty)
-        };
+        });
       }
 
       return obj;
     }, {});
 
-  return {
-    ...peer,
+  return Object.assign({}, peer, {
     protocols
-  };
+  });
 }
 
 function outPeers (peers) {

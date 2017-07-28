@@ -16,7 +16,7 @@
 
 const { isHex } = require('./types');
 
-const Func = require('@parity/abi/spec/function';
+const Func = require('@parity/abi/spec/function');
 const { fromParamType, toParamType } = require('@parity/abi/spec/paramType/format');
 
 function decodeCallData (data) {

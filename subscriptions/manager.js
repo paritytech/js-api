@@ -46,6 +46,8 @@ class Manager {
       };
     });
 
+    this._updateSubscriptions = this._updateSubscriptions.bind(this);
+
     this._logging = new Logging(this._updateSubscriptions);
     this._eth = new Eth(this._updateSubscriptions, api);
     this._personal = new Personal(this._updateSubscriptions, api, this);
@@ -119,7 +121,7 @@ class Manager {
     }
   }
 
-  _updateSubscriptions = (subscriptionName, error, data) => {
+  _updateSubscriptions (subscriptionName, error, data) {
     const subscriptions = this.subscriptions
       .filter(subscription => subscription.name === subscriptionName);
 

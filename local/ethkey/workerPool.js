@@ -21,8 +21,10 @@ const KeyWorker = hasWebWorkers
   : require('./worker').KeyWorker;
 
 class WorkerContainer {
-  busy = false;
-  _worker = new KeyWorker();
+  constructor () {
+    this.busy = false;
+    this._worker = new KeyWorker();
+  }
 
   action (action, payload) {
     if (this.busy) {
@@ -50,12 +52,14 @@ class WorkerContainer {
 }
 
 class WorkerPool {
-  pool = [
-    new WorkerContainer(),
-    new WorkerContainer()
-  ];
+  constructor () {
+    this.pool = [
+      new WorkerContainer(),
+      new WorkerContainer()
+    ];
 
-  queue = [];
+    this.queue = [];
+  }
 
   _getContainer () {
     return this.pool.find((container) => !container.busy);

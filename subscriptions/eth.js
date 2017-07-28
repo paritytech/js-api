@@ -24,6 +24,8 @@ class Eth {
 
     this._lastBlock = new BigNumber(-1);
     this._pollTimerId = null;
+
+    this._blockNumber = this._blockNumber.bind(this);
   }
 
   get isStarted () {
@@ -36,7 +38,7 @@ class Eth {
     return this._blockNumber();
   }
 
-  _blockNumber = () => {
+  _blockNumber () {
     const nextTimeout = (timeout = 1000) => {
       this._pollTimerId = setTimeout(() => {
         this._blockNumber();

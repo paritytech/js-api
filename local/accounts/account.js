@@ -94,14 +94,6 @@ class Account {
     });
   }
 
-  static fromPrivateKey (persist, key, password) {
-    return createKeyObject(key, password).then((keyObject) => {
-      const account = new Account(persist, { keyObject });
-
-      return account;
-    });
-  }
-
   toJSON () {
     return {
       keyObject: this._keyObject,
@@ -110,5 +102,13 @@ class Account {
     };
   }
 }
+
+Account.fromPrivateKey = function (persist, key, password) {
+  return createKeyObject(key, password).then((keyObject) => {
+    const account = new Account(persist, { keyObject });
+
+    return account;
+  });
+};
 
 module.exports = Account;

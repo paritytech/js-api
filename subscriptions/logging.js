@@ -29,18 +29,18 @@ class Logging {
 
   start () {
   }
-
-  static send (method, params, json) {
-    if (!instance) {
-      return;
-    }
-
-    return instance._updateSubscriptions('logging', null, {
-      method,
-      params,
-      json
-    });
-  }
 }
+
+Logging.send = function (method, params, json) {
+  if (!instance) {
+    return;
+  }
+
+  return instance._updateSubscriptions('logging', null, {
+    method,
+    params,
+    json
+  });
+};
 
 module.exports = Logging;

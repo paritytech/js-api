@@ -14,29 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-class PromiseProvider {
-  constructor (provider) {
-    this.provider = provider;
+const { isAddress, toChecksumAddress } = require('@parity/abi/util/address');
 
-    this.send = this.send.bind(this);
-  }
-
-  send (method, ...params) {
-    if (!this.provider.send) {
-      // old-style transport interface for backwards compatibility
-      return this.provider.execute(method, params);
-    }
-
-    return new Promise((resolve, reject) => {
-      this.provider.send(method, params, (error, result) => {
-        if (error) {
-          reject(error);
-        } else {
-          resolve(result);
-        }
-      });
-    });
-  }
-}
-
-module.exports = PromiseProvider;
+module.exports = {
+  isAddress,
+  toChecksumAddress
+};

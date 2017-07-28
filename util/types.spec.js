@@ -16,8 +16,8 @@
 
 const sinon = require('sinon');
 
-const { isArray, isError, isFunction, isHex, isInstanceOf, isObject, isString } = require('./types';
-const Eth = require('../rpc/eth';
+const { isArray, isError, isFunction, isHex, isInstanceOf, isObject, isString } = require('./types');
+const Eth = require('../rpc/eth');
 
 describe('api/util/types', () => {
   describe('isArray', () => {

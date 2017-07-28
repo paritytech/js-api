@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { createHttpApi } = require('../../../../test/e2e/ethapi');
+const { createHttpApi } = require('../../test/e2e/ethapi');
 
 describe('ethapi.parity', () => {
   const ethapi = createHttpApi();

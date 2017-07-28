@@ -39,18 +39,26 @@ function mockWebAssembly () {
 
   // Simple mock replacement
   return {
-    Memory: class { buffer = new ArrayBuffer(2048) },
-    Table: class {},
-    Module: class {},
+    Memory: class {
+      constructor() {
+        this.buffer = new ArrayBuffer(2048);
+      }
+    },
+    Table: class {
+    },
+    Module: class {
+    },
     Instance: class {
-      exports = {
-        '_input_ptr': () => 0,
-        '_secret_ptr': () => 0,
-        '_public_ptr': () => 0,
-        '_address_ptr': () => 0,
-        '_ecpointg': NOOP,
-        '_brain': throwWasmError,
-        '_verify_secret': throwWasmError
+      constructor () {
+        this.exports = {
+          '_input_ptr': () => 0,
+          '_secret_ptr': () => 0,
+          '_public_ptr': () => 0,
+          '_address_ptr': () => 0,
+          '_ecpointg': NOOP,
+          '_brain': throwWasmError,
+          '_verify_secret': throwWasmError
+        }
       }
     }
   };
@@ -114,10 +122,10 @@ function memcpy (dest, src, len) {
 }
 
 // Synchronously compile WASM from the buffer
-const module = new Module(wasmBuffer);
+const wasmModule = new Module(wasmBuffer);
 
 // Instantiated WASM module
-const instance = new Instance(module, {
+const instance = new Instance(wasmModule, {
   global: {},
   env: {
     DYNAMICTOP_PTR,

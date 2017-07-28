@@ -140,7 +140,7 @@ function inOptionsCondition (condition) {
 }
 
 function inOptions (_options = {}) {
-  const options = { ..._options };
+  const options = Object.assign({}, _options);
 
   Object.keys(options).forEach((key) => {
     switch (key) {

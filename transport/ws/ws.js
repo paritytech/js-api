@@ -29,7 +29,10 @@ class Ws extends JsonRpcBase {
     this._url = url;
     this._token = token;
     this._messages = {};
-    this._subscriptions = { 'eth_subscription': [], 'parity_subscription': [] };
+    this._subscriptions = {
+      'eth_subscription': [],
+      'parity_subscription': []
+    };
     this._sessionHash = null;
 
     this._connecting = false;
@@ -41,6 +44,13 @@ class Ws extends JsonRpcBase {
 
     this._connectPromise = null;
     this._connectPromiseFunctions = {};
+
+    this._onClose = this._onClose.bind(this);
+    this._onError = this._onError.bind(this);
+    this._onMessage = this._onMessage.bind(this);
+    this._onOpen = this._onOpen.bind(this);
+    this._extract = this._extract.bind(this);
+    this._send = this._send.bind(this);
 
     if (autoconnect) {
       this.connect();
@@ -134,7 +144,7 @@ class Ws extends JsonRpcBase {
     return this._connectPromise;
   }
 
-  _onOpen = (event) => {
+  _onOpen (event) {
     this._setConnected();
     this._connecting = false;
     this._retries = 0;
@@ -149,7 +159,7 @@ class Ws extends JsonRpcBase {
     this._connectPromiseFunctions = {};
   }
 
-  _onClose = (event) => {
+  _onClose (event) {
     this._setDisconnected();
     this._connecting = false;
 
@@ -182,7 +192,7 @@ class Ws extends JsonRpcBase {
     console.log('ws:onClose');
   }
 
-  _onError = (event) => {
+  _onError (event) {
     // Only print error if the WS is connected
     // ie. don't print if error == closed
     window.setTimeout(() => {
@@ -202,7 +212,7 @@ class Ws extends JsonRpcBase {
     }, 50);
   }
 
-  _extract = (result) => {
+  _extract (result) {
     const { result: res, id, method, params } = result;
     const msg = this._messages[id];
 
@@ -236,7 +246,7 @@ class Ws extends JsonRpcBase {
     throw Error(`Unknown message format: No ID or subscription ${JSON.stringify(result)}`);
   }
 
-  _onMessage = (event) => {
+  _onMessage (event) {
     try {
       const result = JSON.parse(event.data);
       const { method, params, json, resolve, reject, callback, subscription } = this._extract(result);
@@ -276,7 +286,7 @@ class Ws extends JsonRpcBase {
     }
   }
 
-  _send = (id) => {
+  _send (id) {
     const message = this._messages[id];
 
     if (this._connected) {
