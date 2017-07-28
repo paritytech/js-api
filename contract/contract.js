@@ -31,6 +31,17 @@ class Contract {
     this._api = api;
     this._abi = new Abi(abi);
 
+    this.getCallData = this.getCallData.bind(this);
+    this._pollCheckRequest = this._pollCheckRequest.bind(this);
+    this._pollTransactionReceipt = this._pollTransactionReceipt.bind(this);
+    this._bindFunction = this._bindFunction.bind(this);
+    this._bindEvent = this._bindEvent.bind(this);
+    this._subscribeToChanges = this._subscribeToChanges.bind(this);
+    this._unsubscribeFromChanges = this._unsubscribeFromChanges.bind(this);
+    this._subscribeToBlock = this._subscribeToBlock.bind(this);
+    this._subscribeToPendings = this._subscribeToPendings.bind(this);
+    this._sendSubscriptionChanges = this._sendSubscriptionChanges.bind(this);
+
     this._subscriptions = {};
     this._constructors = this._abi.constructors.map(this._bindFunction);
     this._functions = this._abi.functions.map(this._bindFunction);
@@ -57,17 +68,6 @@ class Contract {
     if (api && api.patch && api.patch.contract) {
       api.patch.contract(this);
     }
-
-    this.getCallData = this.getCallData.bind(this);
-    this._pollCheckRequest = this._pollCheckRequest.bind(this);
-    this._pollTransactionReceipt = this._pollTransactionReceipt.bind(this);
-    this._bindFunction = this._bindFunction.bind(this);
-    this._bindEvent = this._bindEvent.bind(this);
-    this._subscribeToChanges = this._subscribeToChanges.bind(this);
-    this._unsubscribeFromChanges = this._unsubscribeFromChanges.bind(this);
-    this._subscribeToBlock = this._subscribeToBlock.bind(this);
-    this._subscribeToPendings = this._subscribeToPendings.bind(this);
-    this._sendSubscriptionChanges = this._sendSubscriptionChanges.bind(this);
   }
 
   get address () {
@@ -248,13 +248,13 @@ class Contract {
   _encodeOptions (func, options, values) {
     const data = this.getCallData(func, options, values);
 
-    return Object.assign({}, options, data);
+    return Object.assign({}, options, { data });
   }
 
   _addOptionsTo (options = {}) {
-    return Object.assign({}, options, {
+    return Object.assign({
       to: this._address
-    });
+    }, options);
   }
 
   _bindFunction (func) {
@@ -270,6 +270,7 @@ class Contract {
 
       try {
         callParams = this._encodeOptions(func, this._addOptionsTo(options), values);
+        console.log('callParams', callParams);
       } catch (error) {
         return Promise.reject(error);
       }

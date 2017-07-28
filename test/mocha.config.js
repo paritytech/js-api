@@ -22,6 +22,7 @@ es6Promise.polyfill();
 
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+require('sinon-as-promised');
 const sinonChai = require('sinon-chai');
 const { JSDOM } = require('jsdom');
 const { WebSocket } = require('mock-socket');
@@ -39,3 +40,5 @@ global.window = jsdom.window;
 global.window.localStorage = global.localStorage;
 global.navigator = global.window.navigator;
 global.location = global.window.location;
+
+module.exports = {};

@@ -25,23 +25,23 @@
     "test": "NODE_ENV=test mocha ./*.spec.js ./**/*.spec.js"
   },
   "devDependencies": {
-    "chai": "^4.1.0",
-    "chai-as-promised": "^7.1.1",
+    "chai": "3.5.0",
+    "chai-as-promised": "6.0.0",
     "es6-promise": "^4.1.1",
     "jsdom": "^11.1.0",
     "mocha": "^3.4.2",
-    "mock-local-storage": "^1.0.4",
-    "mock-socket": "^6.1.0",
-    "nock": "^9.0.14",
-    "sinon": "^2.4.1",
-    "sinon-as-promised": "^4.0.3",
-    "sinon-chai": "^2.12.0"
+    "mock-local-storage": "1.0.2",
+    "mock-socket": "6.0.4",
+    "nock": "9.0.7",
+    "sinon": "1.17.7",
+    "sinon-as-promised": "4.0.2",
+    "sinon-chai": "2.8.0"
   },
   "dependencies": {
     "@parity/abi": "paritytech/js-abi#414765a476d88b6fb9f3398c99a946021957d07a",
     "@parity/jsonrpc": "paritytech/js-jsonrpc#89a6e441370f55d8fe995e27007f60da29b6672b",
     "@parity/wordlist": "^1.1.0",
-    "bignumber.js": "^3.0.1",
+    "bignumber.js": "3.0.1",
     "blockies": "0.0.2",
     "es6-error": "^4.0.0",
     "ethereumjs-tx": "^1.2.5",
