@@ -22,12 +22,15 @@
     "Promise"
   ],
   "scripts": {
+    "test": "NODE_ENV=test mocha ./*.spec.js ./**/*.spec.js"
   },
   "devDependencies": {
+    "chai": "^4.1.0",
+    "mocha": "^3.4.2"
   },
   "dependencies": {
-    "@parity/abi": "paritytech/js-abi#a1021ca5b7550e1e24e4767a22ef3f0d95ead19a",
-    "@parity/jsonrpc": "paritytech/js-jsonrpc#ac545573880212a27cf4cc6bb32a37fdab6dc26d",
+    "@parity/abi": "paritytech/js-abi#414765a476d88b6fb9f3398c99a946021957d07a",
+    "@parity/jsonrpc": "paritytech/js-jsonrpc#89a6e441370f55d8fe995e27007f60da29b6672b",
     "bignumber.js": "3.0.1",
     "blockies": "0.0.2",
     "es6-error": "4.0.0",
