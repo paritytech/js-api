@@ -82,7 +82,7 @@ function align (mem) {
   return (Math.ceil(mem / ALIGN_SIZE) * ALIGN_SIZE) | 0;
 }
 
-export function slice (ptr, len) {
+function slice (ptr, len) {
   return wasmMemoryU8.subarray(ptr, ptr + len);
 }
 
@@ -144,4 +144,9 @@ const instance = new Instance(module, {
   }
 });
 
-export const extern = instance.exports;
+const extern = instance.exports;
+
+module.exports = {
+  extern,
+  slice
+};

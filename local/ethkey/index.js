@@ -16,12 +16,12 @@
 
 import workerPool from './workerPool';
 
-export function createKeyObject (key, password) {
+function createKeyObject (key, password) {
   return workerPool.action('createKeyObject', { key, password })
     .then((obj) => JSON.parse(obj));
 }
 
-export function decryptPrivateKey (keyObject, password) {
+function decryptPrivateKey (keyObject, password) {
   return workerPool
     .action('decryptPrivateKey', { keyObject, password })
     .then((privateKey) => {
@@ -33,15 +33,23 @@ export function decryptPrivateKey (keyObject, password) {
     });
 }
 
-export function phraseToAddress (phrase) {
+function phraseToAddress (phrase) {
   return phraseToWallet(phrase)
     .then((wallet) => wallet.address);
 }
 
-export function phraseToWallet (phrase) {
+function phraseToWallet (phrase) {
   return workerPool.action('phraseToWallet', phrase);
 }
 
-export function verifySecret (secret) {
+function verifySecret (secret) {
   return workerPool.action('verifySecret', secret);
 }
+
+module.exports  ={
+  createKeyObject,
+  decryptPrivateKey,
+  phraseToAddress,
+  phraseToWallet,
+  verifySecret
+};

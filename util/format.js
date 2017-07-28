@@ -16,11 +16,11 @@
 
 import { range } from 'lodash';
 
-export function bytesToHex (bytes) {
+function bytesToHex (bytes) {
   return '0x' + Buffer.from(bytes).toString('hex');
 }
 
-export function cleanupValue (value, type) {
+function cleanupValue (value, type) {
   // TODO: make work with arbitrary depth arrays
   if (value instanceof Array && type.match(/bytes[0-9]+/)) {
     // figure out if it's an ASCII string hiding in there:
@@ -52,7 +52,7 @@ export function cleanupValue (value, type) {
   return value;
 }
 
-export function hexToBytes (hex) {
+function hexToBytes (hex) {
   const raw = toHex(hex).slice(2);
   const bytes = [];
 
@@ -63,34 +63,34 @@ export function hexToBytes (hex) {
   return bytes;
 }
 
-export function hexToAscii (hex) {
+function hexToAscii (hex) {
   const bytes = hexToBytes(hex);
   const str = bytes.map((byte) => String.fromCharCode(byte)).join('');
 
   return str;
 }
 
-export function bytesToAscii (bytes) {
+function bytesToAscii (bytes) {
   return bytes.map((b) => String.fromCharCode(b % 512)).join('');
 }
 
-export function asciiToHex (string) {
+function asciiToHex (string) {
   return '0x' + string.split('').map((s) => s.charCodeAt(0).toString(16)).join('');
 }
 
-export function padRight (input, length) {
+function padRight (input, length) {
   const value = toHex(input).substr(2, length * 2);
 
   return '0x' + value + range(length * 2 - value.length).map(() => '0').join('');
 }
 
-export function padLeft (input, length) {
+function padLeft (input, length) {
   const value = toHex(input).substr(2, length * 2);
 
   return '0x' + range(length * 2 - value.length).map(() => '0').join('') + value;
 }
 
-export function toHex (str) {
+function toHex (str) {
   if (str && str.toString) {
     str = str.toString(16);
   }
@@ -101,3 +101,15 @@ export function toHex (str) {
 
   return `0x${(str || '').toLowerCase()}`;
 }
+
+module.exports = {
+  asciiToHex,
+  bytesToAscii,
+  bytesToHex,
+  cleanupValue,
+  hexToAscii,
+  hexToBytes,
+  padLeft,
+  padRight,
+  toHex
+};

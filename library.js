@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-import es6Promise from 'es6-promise';
+const es6Promise = require('es6-promise');
 es6Promise.polyfill();
 
 const isNode = typeof global !== 'undefined' && typeof global !== 'undefined';
@@ -28,7 +28,7 @@ if (isNode) {
   global.fetch = require('node-fetch');
 }
 
-import Abi from '../abi';
-import Api from './';
+const Abi = require('@parity/abi');
+const Api = require('./index');
 
-export { Api, Abi };
+module.exports = { Api, Abi };

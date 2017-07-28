@@ -16,13 +16,16 @@
 
 import Ws from './ws';
 
-export Http from './http';
-export PostMessage from './postMessage';
-export PromiseProvider from './promise';
+import Http from './http';
+import PostMessage from './postMessage';
+import PromiseProvider from './promise';
 
 const WsSecure = Ws;
 
-export {
+module.exports = {
+  Http,
+  PostMessage,
+  PromiseProvider,
   Ws,
   WsSecure
 };

@@ -14,13 +14,26 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-export Db from './db';
-export Eth from './eth';
-export Parity from './parity';
-export Net from './net';
-export Personal from './personal';
-export Shell from './shell';
-export Shh from './shh';
-export Signer from './signer';
-export Trace from './trace';
-export Web3 from './web3';
+import Db from './db';
+import Eth from './eth';
+import Parity from './parity';
+import Net from './net';
+import Personal from './personal';
+import Shell from './shell';
+import Shh from './shh';
+import Signer from './signer';
+import Trace from './trace';
+import Web3 from './web3';
+
+module.exports = {
+  Db,
+  Eth,
+  Parity,
+  Net,
+  Personal,
+  Shell,
+  Shh,
+  Signer,
+  Trace,
+  Web3
+};

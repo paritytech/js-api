@@ -19,16 +19,16 @@ import BigNumber from 'bignumber.js';
 import { isArray, isHex, isInstanceOf, isString } from '../util/types';
 import { padLeft, toHex } from '../util/format';
 
-export function inAddress (address) {
+function inAddress (address) {
   // TODO: address validation if we have upper-lower addresses
   return inHex(address);
 }
 
-export function inAddresses (addresses) {
+function inAddresses (addresses) {
   return (addresses || []).map(inAddress);
 }
 
-export function inBlockNumber (blockNumber) {
+function inBlockNumber (blockNumber) {
   if (isString(blockNumber)) {
     switch (blockNumber) {
       case 'earliest':
@@ -41,7 +41,7 @@ export function inBlockNumber (blockNumber) {
   return inNumber16(blockNumber);
 }
 
-export function inData (data) {
+function inData (data) {
   if (data && data.length && !isHex(data)) {
     data = data.split('').map((chr) => {
       return `0${chr.charCodeAt(0).toString(16)}`.slice(-2);
@@ -51,11 +51,11 @@ export function inData (data) {
   return inHex(data);
 }
 
-export function inHash (hash) {
+function inHash (hash) {
   return inHex(hash);
 }
 
-export function inTopics (_topics) {
+function inTopics (_topics) {
   let topics = (_topics || [])
     .filter((topic) => topic === null || topic)
     .map((topic) => {
@@ -73,7 +73,7 @@ export function inTopics (_topics) {
   return topics;
 }
 
-export function inFilter (options) {
+function inFilter (options) {
   if (options) {
     Object.keys(options).forEach((key) => {
       switch (key) {
@@ -103,11 +103,11 @@ export function inFilter (options) {
   return options;
 }
 
-export function inHex (str) {
+function inHex (str) {
   return toHex(str);
 }
 
-export function inNumber10 (number) {
+function inNumber10 (number) {
   if (isInstanceOf(number, BigNumber)) {
     return number.toNumber();
   }
@@ -115,7 +115,7 @@ export function inNumber10 (number) {
   return (new BigNumber(number || 0)).toNumber();
 }
 
-export function inNumber16 (number) {
+function inNumber16 (number) {
   const bn = isInstanceOf(number, BigNumber)
     ? number
     : (new BigNumber(number || 0));
@@ -127,7 +127,7 @@ export function inNumber16 (number) {
   return inHex(bn.toString(16));
 }
 
-export function inOptionsCondition (condition) {
+function inOptionsCondition (condition) {
   if (condition) {
     if (condition.block) {
       condition.block = condition.block ? inNumber10(condition.block) : null;
@@ -139,7 +139,7 @@ export function inOptionsCondition (condition) {
   return condition;
 }
 
-export function inOptions (_options = {}) {
+function inOptions (_options = {}) {
   const options = { ..._options };
 
   Object.keys(options).forEach((key) => {
@@ -179,7 +179,7 @@ export function inOptions (_options = {}) {
   return options;
 }
 
-export function inTraceFilter (filterObject) {
+function inTraceFilter (filterObject) {
   if (filterObject) {
     Object.keys(filterObject).forEach((key) => {
       switch (key) {
@@ -200,7 +200,7 @@ export function inTraceFilter (filterObject) {
   return filterObject;
 }
 
-export function inTraceType (whatTrace) {
+function inTraceType (whatTrace) {
   if (isString(whatTrace)) {
     return [whatTrace];
   }
@@ -212,7 +212,7 @@ function inDeriveType (derive) {
   return derive && derive.type === 'hard' ? 'hard' : 'soft';
 }
 
-export function inDeriveHash (derive) {
+function inDeriveHash (derive) {
   const hash = derive && derive.hash ? derive.hash : derive;
   const type = inDeriveType(derive);
 
@@ -222,7 +222,7 @@ export function inDeriveHash (derive) {
   };
 }
 
-export function inDeriveIndex (derive) {
+function inDeriveIndex (derive) {
   if (!derive) {
     return [];
   }
@@ -239,4 +239,23 @@ export function inDeriveIndex (derive) {
       type: inDeriveType(item)
     };
   });
+}
+
+module.exports = {
+  inAddress,
+  inAddresses,
+  inBlockNumber,
+  inData,
+  inHash,
+  inTopics,
+  inFilter,
+  inHex,
+  inNumber10,
+  inNumber16,
+  inOptionsCondition,
+  inOptions,
+  inTraceFilter,
+  inTraceType,
+  inDeriveHash,
+  inDeriveIndex
 }

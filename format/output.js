@@ -20,7 +20,7 @@ import { toChecksumAddress } from '@parity/abi/util/address';
 
 import { isString } from '../util/types';
 
-export function outAccountInfo (infos) {
+function outAccountInfo (infos) {
   return Object
     .keys(infos)
     .reduce((ret, _address) => {
@@ -40,15 +40,15 @@ export function outAccountInfo (infos) {
     }, {});
 }
 
-export function outAddress (address) {
+function outAddress (address) {
   return toChecksumAddress(address);
 }
 
-export function outAddresses (addresses) {
+function outAddresses (addresses) {
   return (addresses || []).map(outAddress);
 }
 
-export function outBlock (block) {
+function outBlock (block) {
   if (block) {
     Object.keys(block).forEach((key) => {
       switch (key) {
@@ -76,7 +76,7 @@ export function outBlock (block) {
   return block;
 }
 
-export function outChainStatus (status) {
+function outChainStatus (status) {
   if (status) {
     Object.keys(status).forEach((key) => {
       switch (key) {
@@ -92,7 +92,7 @@ export function outChainStatus (status) {
   return status;
 }
 
-export function outDate (date) {
+function outDate (date) {
   if (typeof date.toISOString === 'function') {
     return date;
   }
@@ -106,7 +106,7 @@ export function outDate (date) {
   return new Date(outNumber(date).toNumber() * 1000);
 }
 
-export function outHistogram (histogram) {
+function outHistogram (histogram) {
   if (histogram) {
     Object.keys(histogram).forEach((key) => {
       switch (key) {
@@ -121,7 +121,7 @@ export function outHistogram (histogram) {
   return histogram;
 }
 
-export function outLog (log) {
+function outLog (log) {
   Object.keys(log).forEach((key) => {
     switch (key) {
       case 'blockNumber':
@@ -139,7 +139,7 @@ export function outLog (log) {
   return log;
 }
 
-export function outHwAccountInfo (infos) {
+function outHwAccountInfo (infos) {
   return Object
     .keys(infos)
     .reduce((ret, _address) => {
@@ -151,15 +151,15 @@ export function outHwAccountInfo (infos) {
     }, {});
 }
 
-export function outNodeKind (info) {
+function outNodeKind (info) {
   return info;
 }
 
-export function outNumber (number) {
+function outNumber (number) {
   return new BigNumber(number || 0);
 }
 
-export function outPeer (peer) {
+function outPeer (peer) {
   const protocols = Object.keys(peer.protocols)
     .reduce((obj, key) => {
       if (peer.protocols[key]) {
@@ -178,7 +178,7 @@ export function outPeer (peer) {
   };
 }
 
-export function outPeers (peers) {
+function outPeers (peers) {
   return {
     active: outNumber(peers.active),
     connected: outNumber(peers.connected),
@@ -187,7 +187,7 @@ export function outPeers (peers) {
   };
 }
 
-export function outReceipt (receipt) {
+function outReceipt (receipt) {
   if (receipt) {
     Object.keys(receipt).forEach((key) => {
       switch (key) {
@@ -208,7 +208,7 @@ export function outReceipt (receipt) {
   return receipt;
 }
 
-export function outRecentDapps (recentDapps) {
+function outRecentDapps (recentDapps) {
   if (recentDapps) {
     Object.keys(recentDapps).forEach((url) => {
       recentDapps[url] = outDate(recentDapps[url]);
@@ -218,7 +218,7 @@ export function outRecentDapps (recentDapps) {
   return recentDapps;
 }
 
-export function outSignerRequest (request) {
+function outSignerRequest (request) {
   if (request) {
     Object.keys(request).forEach((key) => {
       switch (key) {
@@ -246,7 +246,7 @@ export function outSignerRequest (request) {
   return request;
 }
 
-export function outSyncing (syncing) {
+function outSyncing (syncing) {
   if (syncing && syncing !== 'false') {
     Object.keys(syncing).forEach((key) => {
       switch (key) {
@@ -268,7 +268,7 @@ export function outSyncing (syncing) {
   return syncing;
 }
 
-export function outTransactionCondition (condition) {
+function outTransactionCondition (condition) {
   if (condition) {
     if (condition.block) {
       condition.block = outNumber(condition.block);
@@ -280,7 +280,7 @@ export function outTransactionCondition (condition) {
   return condition;
 }
 
-export function outTransaction (tx) {
+function outTransaction (tx) {
   if (tx) {
     Object.keys(tx).forEach((key) => {
       switch (key) {
@@ -309,7 +309,7 @@ export function outTransaction (tx) {
   return tx;
 }
 
-export function outSigningPayload (payload) {
+function outSigningPayload (payload) {
   if (payload) {
     Object.keys(payload).forEach((key) => {
       switch (key) {
@@ -323,7 +323,7 @@ export function outSigningPayload (payload) {
   return payload;
 }
 
-export function outTrace (trace) {
+function outTrace (trace) {
   if (trace) {
     if (trace.action) {
       Object.keys(trace.action).forEach(key => {
@@ -378,7 +378,7 @@ export function outTrace (trace) {
   return trace;
 }
 
-export function outTraces (traces) {
+function outTraces (traces) {
   if (traces) {
     return traces.map(outTrace);
   }
@@ -386,7 +386,7 @@ export function outTraces (traces) {
   return traces;
 }
 
-export function outTraceReplay (trace) {
+function outTraceReplay (trace) {
   if (trace) {
     Object.keys(trace).forEach((key) => {
       switch (key) {
@@ -400,7 +400,7 @@ export function outTraceReplay (trace) {
   return trace;
 }
 
-export function outVaultMeta (meta) {
+function outVaultMeta (meta) {
   if (isString(meta)) {
     try {
       const obj = JSON.parse(meta);
@@ -413,3 +413,30 @@ export function outVaultMeta (meta) {
 
   return meta || {};
 }
+
+module.exports = {
+  outAccountInfo,
+  outAddress,
+  outAddresses,
+  outBlock,
+  outChainStatus,
+  outDate,
+  outHistogram,
+  outLog,
+  outHwAccountInfo,
+  outNodeKind,
+  outNumber,
+  outPeer,
+  outPeers,
+  outReceipt,
+  outRecentDapps,
+  outSignerRequest,
+  outSyncing,
+  outTransactionCondition,
+  outTransaction,
+  outSigningPayload,
+  outTrace,
+  outTraces,
+  outTraceReplay,
+  outVaultMeta
+};

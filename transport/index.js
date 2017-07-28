@@ -16,13 +16,16 @@
 
 import Ws from './ws';
 
-export Http from './http';
-export TransportError from './error';
-export Middleware from './middleware';
+import Http from './http';
+import TransportError from './error';
+import Middleware from './middleware';
 
 const WsSecure = Ws;
 
-export {
+module.exports = {
+  Http,
+  Middleware,
+  TransportError,
   Ws,
   WsSecure
 };

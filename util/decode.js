@@ -19,7 +19,7 @@ import { isHex } from './types';
 import Func from '@parity/abi/spec/function';
 import { fromParamType, toParamType } from '@parity/abi/spec/paramType/format';
 
-export function decodeCallData (data) {
+function decodeCallData (data) {
   if (!isHex(data)) {
     throw new Error('Input to decodeCallData should be a hex value');
   }
@@ -41,7 +41,7 @@ export function decodeCallData (data) {
   };
 }
 
-export function decodeMethodInput (methodAbi, paramdata) {
+function decodeMethodInput (methodAbi, paramdata) {
   if (!methodAbi) {
     throw new Error('decodeMethodInput should receive valid method-specific ABI');
   }
@@ -60,7 +60,7 @@ export function decodeMethodInput (methodAbi, paramdata) {
 }
 
 // takes a method in form name(...,types) and returns the inferred abi definition
-export function methodToAbi (method) {
+function methodToAbi (method) {
   const length = method.length;
   const typesStart = method.indexOf('(');
   const typesEnd = method.indexOf(')');
@@ -86,10 +86,17 @@ export function methodToAbi (method) {
   return { type: 'function', name, inputs };
 }
 
-export function abiDecode (inputTypes, data) {
+function abiDecode (inputTypes, data) {
   return decodeMethodInput({
     inputs: inputTypes.map((type) => {
       return { type };
     })
   }, data);
 }
+
+module.exports = {
+  decodeCallData,
+  decodeMethodInput,
+  methodToAbi,
+  abiDecode
+};

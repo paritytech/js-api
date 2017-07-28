@@ -21,7 +21,7 @@ import { abiDecode } from './decode';
 import { cleanupValue } from './format';
 import { sha3 } from './sha3';
 
-export function encodeMethodCallAbi (methodAbi = {}, values = []) {
+function encodeMethodCallAbi (methodAbi = {}, values = []) {
   const func = new Func(methodAbi);
   const tokens = Abi.encodeTokens(func.inputParamTypes(), values);
   const call = func.encodeCall(tokens);
@@ -29,7 +29,7 @@ export function encodeMethodCallAbi (methodAbi = {}, values = []) {
   return `0x${call}`;
 }
 
-export function abiEncode (methodName, inputTypes, data) {
+function abiEncode (methodName, inputTypes, data) {
   const result = encodeMethodCallAbi({
     name: methodName || '',
     type: 'function',
@@ -41,7 +41,7 @@ export function abiEncode (methodName, inputTypes, data) {
   return result;
 }
 
-export function abiUnencode (abi, data) {
+function abiUnencode (abi, data) {
   const callsig = data.substr(2, 8);
   const op = abi.find((field) => {
     return field.type === 'function' &&
@@ -64,6 +64,13 @@ export function abiUnencode (abi, data) {
   return [op.name, argsByName, argsByIndex];
 }
 
-export function abiSignature (name, inputs) {
+function abiSignature (name, inputs) {
   return sha3(`${name}(${inputs.join()})`);
 }
+
+module.exports = {
+  abiEncode,
+  abiSignature,
+  abiUnencode,
+  encodeMethodCallAbi
+};
