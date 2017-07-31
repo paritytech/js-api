@@ -270,7 +270,6 @@ class Contract {
 
       try {
         callParams = this._encodeOptions(func, this._addOptionsTo(options), values);
-        console.log('callParams', callParams);
       } catch (error) {
         return Promise.reject(error);
       }
