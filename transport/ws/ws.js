@@ -31,7 +31,8 @@ class Ws extends JsonRpcBase {
     this._messages = {};
     this._subscriptions = {
       'eth_subscription': [],
-      'parity_subscription': []
+      'parity_subscription': [],
+      'shh_subscription': []
     };
     this._sessionHash = null;
 
