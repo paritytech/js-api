@@ -171,6 +171,12 @@ class Accounts {
       return false;
     }
 
+    if (!account.uuid) {
+      this.removeUnsafe(address);
+
+      return true;
+    }
+
     return account
       .isValidPassword(password)
       .then((isValid) => {

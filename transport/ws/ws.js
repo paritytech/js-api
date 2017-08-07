@@ -320,7 +320,7 @@ class Ws extends JsonRpcBase {
     return { method, uMethod, subscription };
   }
 
-  subscribe (api, callback, params) {
+  subscribe (api, callback, ...params) {
     return new Promise((resolve, reject) => {
       const id = this.id;
       const { method, uMethod, subscription } = this._methodsFromApi(api);
@@ -329,16 +329,6 @@ class Ws extends JsonRpcBase {
       this._messages[id] = { id, method, uMethod, params, json, resolve, reject, callback, subscription };
 
       this._send(id);
-    });
-  }
-
-  unsubscribeAll () {
-    return new Promise((resolve, reject) => {
-      var unsubscribed = 0;
-      let keys = Object.keys(this._messages);
-
-      keys.forEach(i => this._messages[i].subscription ? this.unsubscribe(this._messages[i].subId).then(_ => unsubscribed++, reject) : null);
-      resolve(unsubscribed);
     });
   }
 
