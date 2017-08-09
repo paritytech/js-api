@@ -34,6 +34,11 @@ class Shell {
       .send('shell_getMethodPermissions');
   }
 
+  loadApp (appId, params = null) {
+    return this._provider
+      .send('shell_loadApp', appId, params);
+  }
+
   setMethodPermissions (permissions) {
     return this._provider
       .send('shell_setMethodPermissions', permissions);
