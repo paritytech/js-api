@@ -95,9 +95,14 @@ class Parity {
       .send('parity_dappsList');
   }
 
-  dappsUrl () {
+  dappsRefresh () {
     return this._provider
-      .send('parity_dappsUrl');
+      .execute('parity_dappsRefresh');
+  }
+
+  dappsUrl () {
+    return this._transport
+      .execute('parity_dappsUrl');
   }
 
   decryptMessage (address, data) {

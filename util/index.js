@@ -17,7 +17,7 @@
 const { isAddress, toChecksumAddress } = require('./address');
 const { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } = require('./decode');
 const { abiEncode, abiUnencode, abiSignature, encodeMethodCallAbi } = require('./encode');
-const { bytesToHex, hexToAscii, asciiToHex, cleanupValue } = require('./format');
+const { bytesToHex, hexToAscii, asciiToHex, cleanupValue, hexToBytes } = require('./format');
 const { fromWei, toWei } = require('./wei');
 const { sha3 } = require('./sha3');
 const { isArray, isFunction, isHex, isInstanceOf, isString } = require('./types');
@@ -37,6 +37,7 @@ module.exports = {
   isString,
   bytesToHex,
   hexToAscii,
+  hexToBytes,
   asciiToHex,
   createIdentityImg,
   decodeCallData,
