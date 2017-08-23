@@ -97,12 +97,12 @@ class Parity {
 
   dappsRefresh () {
     return this._provider
-      .execute('parity_dappsRefresh');
+      .send('parity_dappsRefresh');
   }
 
   dappsUrl () {
-    return this._transport
-      .execute('parity_dappsUrl');
+    return this._provider
+      .send('parity_dappsUrl');
   }
 
   decryptMessage (address, data) {
