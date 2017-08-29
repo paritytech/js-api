@@ -327,6 +327,11 @@ class Parity {
       .send('parity_chain');
   }
 
+  nodeHealth () {
+    return this._provider
+      .send('parity_nodeHealth');
+  }
+
   nodeKind () {
     return this._provider
       .send('parity_nodeKind')
