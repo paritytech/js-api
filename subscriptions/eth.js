@@ -24,8 +24,13 @@ class Eth {
 
     this._lastBlock = new BigNumber(-1);
     this._pollTimerId = null;
+    this._pollBlockNumber = this._pollBlockNumber.bind(this);
 
-    this._blockNumber = this._blockNumber.bind(this);
+    this._api.transport.on('close', () => {
+      if (this.isStarted) {
+        this.start();
+      }
+    });
   }
 
   get isStarted () {
@@ -35,27 +40,56 @@ class Eth {
   start () {
     this._started = true;
 
-    return this._blockNumber();
+    if (this._api.isPubSub) {
+      return Promise.all([
+        this._pollBlockNumber(false),
+        this._api.pubsub
+          .subscribeAndGetResult(
+            (callback) => this._api.pubsub.eth.newHeads(callback),
+            () => {
+              return this._api.eth
+                .blockNumber()
+                .then((blockNumber) => {
+                  this.updateBlock(blockNumber);
+                  return blockNumber;
+                });
+            }
+          )
+      ]);
+    }
+
+    return this._pollBlockNumber(true);
   }
 
-  _blockNumber () {
-    const nextTimeout = (timeout = 1000) => {
-      this._pollTimerId = setTimeout(() => {
-        this._blockNumber();
-      }, timeout);
+  _pollBlockNumber (doTimeout) {
+    const nextTimeout = (timeout = 1000, forceTimeout = doTimeout) => {
+      if (forceTimeout) {
+        this._pollTimerId = setTimeout(() => {
+          this._pollBlockNumber(doTimeout);
+        }, timeout);
+      }
     };
+
+    if (!this._api.transport.isConnected) {
+      nextTimeout(500, true);
+      return;
+    }
 
     return this._api.eth
       .blockNumber()
       .then((blockNumber) => {
-        if (!blockNumber.eq(this._lastBlock)) {
-          this._lastBlock = blockNumber;
-          this._updateSubscriptions('eth_blockNumber', null, blockNumber);
-        }
+        this.updateBlock(blockNumber);
 
         nextTimeout();
       })
       .catch(() => nextTimeout());
+  }
+
+  updateBlock (blockNumber) {
+    if (!blockNumber.eq(this._lastBlock)) {
+      this._lastBlock = blockNumber;
+      this._updateSubscriptions('eth_blockNumber', null, blockNumber);
+    }
   }
 }
 

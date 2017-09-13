@@ -44,6 +44,16 @@ class Parity {
       .send('parity_addReservedPeer', enode);
   }
 
+  call (requests, blockNumber = 'latest') {
+    return this._provider
+      .send('parity_call', requests.map((options) => inOptions(options)), inBlockNumber(blockNumber));
+  }
+
+  chain () {
+    return this._provider
+      .send('parity_chain');
+  }
+
   chainStatus () {
     return this._provider
       .send('parity_chainStatus')
@@ -336,11 +346,6 @@ class Parity {
     return this._provider
       .send('parity_nodeKind')
       .then(outNodeKind);
-  }
-
-  chain () {
-    return this._provider
-      .send('parity_chain');
   }
 
   netPeers () {

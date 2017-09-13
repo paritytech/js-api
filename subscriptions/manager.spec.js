@@ -25,7 +25,8 @@ function newStub () {
 
   const manager = new Manager({
     transport: {
-      isConnected: true
+      isConnected: true,
+      on: () => {}
     }
   });
 

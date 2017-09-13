@@ -14,31 +14,6 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const PubsubBase = require('../pubsubBase');
+const Signer = require('./signer');
 
-const { outNumber } = require('../../format/output');
-
-class Net extends PubsubBase {
-  constructor (provider) {
-    super(provider);
-    this._api = 'parity';
-  }
-
-  version (callback) {
-    return this.addListener(this._api, 'net_version', callback);
-  }
-
-  peerCount (callback) {
-    return this.addListener(this._api, 'net_peerCount', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outNumber(data));
-    });
-  }
-
-  listening (callback) {
-    return this.addListener(this._api, 'net_listening', callback);
-  }
-}
-
-module.exports = Net;
+module.exports = Signer;

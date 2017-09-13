@@ -17,6 +17,7 @@
 const Eth = require('./eth');
 const Parity = require('./parity');
 const Net = require('./net');
+const Signer = require('./signer');
 
 const { isFunction } = require('../util/types');
 
@@ -29,6 +30,7 @@ class PubSub {
     this._eth = new Eth(provider);
     this._net = new Net(provider);
     this._parity = new Parity(provider);
+    this._signer = new Signer(provider);
   }
 
   get net () {
@@ -43,9 +45,36 @@ class PubSub {
     return this._parity;
   }
 
+  get signer () {
+    return this._signer;
+  }
+
   unsubscribe (subscriptionIds) {
     // subscriptions are namespace independent. Thus we can simply removeListener from any.
     return this._parity.removeListener(subscriptionIds);
+  }
+
+  subscribeAndGetResult (f, callback) {
+    return new Promise((resolve, reject) => {
+      let isFirst = true;
+      let onSubscription = (error, data) => {
+        const p1 = error ? Promise.reject(error) : Promise.resolve(data);
+        const p2 = p1.then(callback);
+
+        if (isFirst) {
+          isFirst = false;
+          p2
+            .then(resolve)
+            .catch(reject);
+        }
+      };
+
+      try {
+        f.call(this, onSubscription).catch(reject);
+      } catch (err) {
+        reject(err);
+      }
+    });
   }
 }
 

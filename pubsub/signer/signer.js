@@ -15,30 +15,26 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 const PubsubBase = require('../pubsubBase');
+const { outSignerRequest } = require('../../format/output');
 
-const { outNumber } = require('../../format/output');
-
-class Net extends PubsubBase {
+class Signer extends PubsubBase {
   constructor (provider) {
     super(provider);
-    this._api = 'parity';
+
+    this._api = {
+      subscribe: 'signer_subscribePending',
+      unsubscribe: 'signer_unsubscribePending',
+      subscription: 'signer_pending'
+    };
   }
 
-  version (callback) {
-    return this.addListener(this._api, 'net_version', callback);
-  }
-
-  peerCount (callback) {
-    return this.addListener(this._api, 'net_peerCount', (error, data) => {
+  pendingRequests (callback) {
+    return this.addListener(this._api, null, (error, data) => {
       error
         ? callback(error)
-        : callback(null, outNumber(data));
+        : callback(null, data.map(outSignerRequest));
     });
-  }
-
-  listening (callback) {
-    return this.addListener(this._api, 'net_listening', callback);
   }
 }
 
-module.exports = Net;
+module.exports = Signer;
