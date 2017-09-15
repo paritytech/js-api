@@ -26,6 +26,7 @@ class PostMessage extends EventEmitter {
     this._destination = destination || window.parent;
 
     this.id = 0;
+    this._connected = false;
     this._messages = {};
     this._queued = [];
 
@@ -38,8 +39,13 @@ class PostMessage extends EventEmitter {
     window.addEventListener('message', this._receiveMessage, false);
   }
 
+  get isConnected () {
+    return this._connected;
+  }
+
   setToken (token) {
     if (token) {
+      this._connected = true;
       this._token = token;
       this.emit('connected');
       this._sendQueued();

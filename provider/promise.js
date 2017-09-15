@@ -28,6 +28,10 @@ class PromiseProvider extends EventEmitter {
     this.send = this.send.bind(this);
   }
 
+  get isConnected () {
+    return this.provider.isConnected;
+  }
+
   send (method, ...params) {
     if (!this.provider.send) {
       // old-style transport interface for backwards compatibility
