@@ -14,9 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-class PromiseProvider {
+const EventEmitter = require('eventemitter3');
+
+class PromiseProvider extends EventEmitter {
   constructor (provider) {
+    super();
+
     this.provider = provider;
+    this.provider.on('connected', () => this.emit('connected'));
+    this.provider.on('connecting', () => this.emit('connecting'));
+    this.provider.on('disconnected', () => this.emit('disconnected'));
 
     this.send = this.send.bind(this);
   }

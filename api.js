@@ -34,12 +34,15 @@ class Api extends EventEmitter {
       console.log(provider);
       console.warn(new Error('deprecated: Api needs provider with send() function, old-style Transport found instead'));
     }
-    // does use new provider interface (not promiseProvider)
+
     if (provider && isFunction(provider.subscribe)) {
       this._pubsub = new Pubsub(provider);
     }
 
     this._provider = new Providers.PromiseProvider(provider);
+    this._provider.on('connected', () => this.emit('connected'));
+    this._provider.on('connecting', () => this.emit('connecting'));
+    this._provider.on('disconnected', () => this.emit('disconnected'));
 
     this._db = new Db(this._provider);
     this._eth = new Eth(this._provider);
