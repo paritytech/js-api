@@ -253,6 +253,16 @@ class Parity {
       .then(outHwAccountInfo);
   }
 
+  lockedHardwareAccountsInfo () {
+    return this._provider
+      .send('parity_lockedHardwareAccountsInfo');
+  }
+
+  hardwarePinMatrixAck (path, pin) {
+    return this._provider
+      .send('parity_hardwarePinMatrixAck', path, pin);
+  }
+
   hashContent (url) {
     return this._provider
       .send('parity_hashContent', url);

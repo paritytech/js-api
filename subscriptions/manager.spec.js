@@ -26,7 +26,7 @@ function newStub () {
   const manager = new Manager({
     transport: {
       isConnected: true,
-      on: () => {}
+      on: sinon.stub()
     }
   });
 
