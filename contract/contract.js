@@ -145,8 +145,12 @@ class Contract {
         return this._api.parity
           .postTransaction(encodedOptions)
           .then((requestId) => {
-            statecb(null, { state: 'checkRequest', requestId });
-            return this._pollCheckRequest(requestId);
+            if (requestId.length !== 66) {
+              statecb(null, { state: 'checkRequest', requestId });
+              return this._pollCheckRequest(requestId);
+            }
+
+            return requestId;
           })
           .then((txhash) => {
             statecb(null, { state: 'getTransactionReceipt', txhash });
@@ -372,7 +376,7 @@ class Contract {
 
   _getFilterOptions (event = null, _options = {}) {
     const optionTopics = _options.topics || [];
-    const signature = event && event.signature || null;
+    const signature = (event && event.signature) || null;
 
     // If event provided, remove the potential event signature
     // as the first element of the topics
