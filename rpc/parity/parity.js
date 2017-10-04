@@ -54,6 +54,11 @@ class Parity {
       .send('parity_chain');
   }
 
+  chainId () {
+    return this._transport
+      .send('parity_chainId');
+  }
+
   chainStatus () {
     return this._provider
       .send('parity_chainStatus')

@@ -189,14 +189,8 @@ class LocalAccountsMiddleware extends Middleware {
       return [];
     });
 
-    register('parity_wsUrl', () => {
-      // This is a hack, will be replaced by a `hostname` setting on the node itself
-      return `${window.location.hostname}:8546`;
-    });
-
-    register('parity_dappsUrl', () => {
-      // This is a hack, will be replaced by a `hostname` setting on the node itself
-      return `${window.location.hostname}:8545`;
+    register('parity_lockedHardwareAccountsInfo', () => {
+      return [];
     });
 
     register('parity_hashContent', () => {
