@@ -229,43 +229,44 @@ class LocalAccountsMiddleware extends Middleware {
 
       const account = accounts.get(from);
 
-      return Promise.all([
-        this.rpcRequest('parity_nextNonce', [from]),
-        account.decryptPrivateKey(password)
-      ])
-      .catch((err) => {
-        transactions.unlock(id);
-
-        // transaction got unlocked, can propagate rejection further
-        throw err;
-      })
-      .then(([nonce, privateKey]) => {
-        if (!privateKey) {
+      return Promise
+        .all([
+          this.rpcRequest('parity_nextNonce', [from]),
+          account.decryptPrivateKey(password)
+        ])
+        .catch((err) => {
           transactions.unlock(id);
 
-          throw new Error('Invalid password');
-        }
+          // transaction got unlocked, can propagate rejection further
+          throw err;
+        })
+        .then(([nonce, privateKey]) => {
+          if (!privateKey) {
+            transactions.unlock(id);
 
-        const tx = new EthereumTx({
-          nonce,
-          to,
-          data,
-          gasLimit: inNumber16(gasLimit),
-          gasPrice: inNumber16(gasPrice),
-          value: inNumber16(value)
+            throw new Error('Invalid password');
+          }
+
+          const tx = new EthereumTx({
+            nonce,
+            to,
+            data,
+            gasLimit: inNumber16(gasLimit),
+            gasPrice: inNumber16(gasPrice),
+            value: inNumber16(value)
+          });
+
+          tx.sign(privateKey);
+
+          const serializedTx = `0x${tx.serialize().toString('hex')}`;
+
+          return this.rpcRequest('eth_sendRawTransaction', [serializedTx]);
+        })
+        .then((hash) => {
+          transactions.confirm(id, hash);
+
+          return {};
         });
-
-        tx.sign(privateKey);
-
-        const serializedTx = `0x${tx.serialize().toString('hex')}`;
-
-        return this.rpcRequest('eth_sendRawTransaction', [serializedTx]);
-      })
-      .then((hash) => {
-        transactions.confirm(id, hash);
-
-        return {};
-      });
     });
 
     register('signer_generateAuthorizationToken', () => {

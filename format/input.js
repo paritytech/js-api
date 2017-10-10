@@ -258,4 +258,4 @@ module.exports = {
   inTraceType,
   inDeriveHash,
   inDeriveIndex
-}
+};

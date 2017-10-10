@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const { TEST_HTTP_URL, mockHttp } = require('../../test/mockRpc');
 const { isBigNumber } = require('../../test/types');
 

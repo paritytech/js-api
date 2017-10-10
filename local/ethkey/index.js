@@ -46,7 +46,7 @@ function verifySecret (secret) {
   return workerPool.action('verifySecret', secret);
 }
 
-module.exports  ={
+module.exports = {
   createKeyObject,
   decryptPrivateKey,
   phraseToAddress,

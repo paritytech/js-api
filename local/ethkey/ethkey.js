@@ -40,7 +40,7 @@ function mockWebAssembly () {
   // Simple mock replacement
   return {
     Memory: class {
-      constructor() {
+      constructor () {
         this.buffer = new ArrayBuffer(2048);
       }
     },
@@ -58,7 +58,7 @@ function mockWebAssembly () {
           '_ecpointg': NOOP,
           '_brain': throwWasmError,
           '_verify_secret': throwWasmError
-        }
+        };
       }
     }
   };

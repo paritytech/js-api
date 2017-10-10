@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const BigNumber = require('bignumber.js');
 
 const { outBlock, outAccountInfo, outAddress, outChainStatus, outDate, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeer, outPeers, outReceipt, outRecentDapps, outSyncing, outTransaction, outTrace, outVaultMeta } = require('./output');

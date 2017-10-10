@@ -17,7 +17,7 @@
 // Allow a web worker in the browser, with a fallback for Node.js
 const hasWebWorkers = typeof Worker !== 'undefined';
 const KeyWorker = hasWebWorkers
-  ? require('worker-loader!./worker')
+  ? require('worker-loader!./worker') // eslint-disable-line import/no-webpack-loader-syntax
   : require('./worker').KeyWorker;
 
 class WorkerContainer {

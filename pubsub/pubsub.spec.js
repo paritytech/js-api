@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const BigNumber = require('bignumber.js');
 const { TEST_WS_URL, mockWs } = require('../test/mockRpc');
 const { isBigNumber } = require('../test/types');
@@ -63,8 +65,10 @@ describe('api/pubsub/Pubsub', () => {
 
   describe('Unsubscribe', () => {
     beforeEach(() => {
-      scope = mockWs([{ method: 'parity_subscribe', reply: 2 },
-                      { method: 'parity_unsubscribe', reply: true }]);
+      scope = mockWs([
+        { method: 'parity_subscribe', reply: 2 },
+        { method: 'parity_unsubscribe', reply: true }
+      ]);
       instance = new Pubsub(new WsSecure(TEST_WS_URL));
     });
 
@@ -242,7 +246,6 @@ describe('api/pubsub/Pubsub', () => {
     });
   });
 
-// Eth API
   describe('accounts', () => {
     beforeEach(() => {
       scope = mockWs([{ method: 'parity_subscribe', reply: 2, subscription: {

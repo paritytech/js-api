@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const nock = require('nock');
 const MockWsServer = require('mock-socket').Server;
 
@@ -105,4 +107,4 @@ module.exports = {
   mockHttp,
   mockWs,
   endpointTest
-}
+};

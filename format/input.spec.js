@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const BigNumber = require('bignumber.js');
 
 const { inAddress, inBlockNumber, inData, inFilter, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex } = require('./input');

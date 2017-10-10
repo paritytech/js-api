@@ -15,6 +15,7 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 const es6Promise = require('es6-promise');
+
 es6Promise.polyfill();
 
 const isNode = typeof global !== 'undefined' && typeof global !== 'undefined';

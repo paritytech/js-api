@@ -142,13 +142,13 @@ class Personal {
           this._defaultAccount(true);
           this._listAccounts();
           this._accountsInfo();
-          return;
+          break;
 
         case 'parity_removeAddress':
         case 'parity_setAccountName':
         case 'parity_setAccountMeta':
           this._accountsInfo();
-          return;
+          break;
 
         case 'parity_setDappAddresses':
         case 'parity_setDappDefaultAddress':
@@ -156,7 +156,7 @@ class Personal {
         case 'parity_setNewDappsDefaultAddress':
           this._defaultAccount(true);
           this._listAccounts();
-          return;
+          break;
       }
     });
   }

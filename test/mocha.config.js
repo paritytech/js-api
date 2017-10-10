@@ -18,11 +18,14 @@ require('mock-local-storage');
 require('isomorphic-fetch');
 
 const es6Promise = require('es6-promise');
+
 es6Promise.polyfill();
 
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
+
 require('sinon-as-promised');
+
 const sinonChai = require('sinon-chai');
 const { JSDOM } = require('jsdom');
 const { WebSocket } = require('mock-socket');

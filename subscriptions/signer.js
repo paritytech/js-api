@@ -107,12 +107,12 @@ class Signer {
         case 'eth_sendTransaction':
         case 'eth_sendRawTransaction':
           this._listRequests(false);
-          return;
+          break;
 
         case 'parity_postTransaction':
           this._postTransaction(data);
           this._listRequests(false);
-          return;
+          break;
       }
     });
   }
