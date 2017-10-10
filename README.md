@@ -2,7 +2,10 @@
 
 Parity.js is a thin, fast, Promise-based wrapper around the Ethereum APIs.
 
-[https://github.com/paritytech/js-api](https://github.com/paritytech/js-api)
+[![Build Status](https://travis-ci.org/paritytech/js-api.svg?branch=master)](https://travis-ci.org/paritytech/js-api)
+[![Coverage Status](https://coveralls.io/repos/github/paritytech/js-api/badge.svg?branch=master)](https://coveralls.io/github/paritytech/js-api?branch=master)
+[![Dependency Status](https://david-dm.org/paritytech/js-api.svg)](https://david-dm.org/paritytech/js-api)
+[![devDependency Status](https://david-dm.org/paritytech/js-api/dev-status.svg)](https://david-dm.org/paritytech/js-api#info=devDependencies)
 
 ## installation
 
@@ -80,4 +83,4 @@ contract.instance
 
 ## apis
 
-APIs implement the calls as exposed in the [Ethcore JSON Ethereum RPC](https://github.com/paritytech/js-jsonrpc) definitions. Mapping follows the naming conventions of the originals, i.e. `eth_call` becomes `eth.call`, `personal_accounts` becomes `personal.accounts`, etc.
+APIs implement the calls as exposed in the [Ethcore JSON Ethereum RPC](https://github.com/paritytech/js-api) definitions. Mapping follows the naming conventions of the originals, i.e. `eth_call` becomes `eth.call`, `personal_accounts` becomes `personal.accounts`, etc.
