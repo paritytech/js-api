@@ -21,6 +21,9 @@
     "Parity",
     "Promise"
   ],
+  "engines": {
+    "node" : ">=6.4"
+  },
   "scripts": {
     "build": "echo \"WARN: npm run build skipped\"",
     "lint": "npm run lint:css && npm run lint:js",
