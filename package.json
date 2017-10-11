@@ -22,7 +22,7 @@
     "Promise"
   ],
   "engines": {
-    "node" : ">=6.4"
+    "node": ">=6.4"
   },
   "scripts": {
     "build": "echo \"WARN: npm run build skipped\"",
