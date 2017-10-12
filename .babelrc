@@ -1,12 +1,18 @@
 {
+  "minified": true,
+  "sourceMap": true,
+  "comments": false,
   "presets": [
     "env",
     "stage-0"
   ],
   "plugins": [
+    "add-module-exports",
     "transform-class-properties",
     "transform-object-rest-spread",
-    "transform-es2015-modules-commonjs"
+    "transform-export-extensions",
+    "transform-es2015-modules-commonjs",
+    "transform-es2015-template-literals"
   ],
   "retainLines": true,
   "env": {
