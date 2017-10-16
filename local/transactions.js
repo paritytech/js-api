@@ -22,8 +22,10 @@ const LOCKED = Symbol('locked');
 const CONFIRMED = Symbol('confirmed');
 const REJECTED = Symbol('rejected');
 
-class Transactions {
+class Transactions extends EventEmitter {
   constructor () {
+    super();
+
     this.reset();
   }
 
@@ -44,6 +46,8 @@ class Transactions {
       status: AWAITING,
       transaction: tx
     };
+
+    this.emit('update');
 
     return id;
   }
@@ -66,6 +70,8 @@ class Transactions {
     }
 
     state.status = LOCKED;
+
+    this.emit('update');
   }
 
   unlock (id) {
@@ -76,6 +82,8 @@ class Transactions {
     }
 
     state.status = AWAITING;
+
+    this.emit('update');
   }
 
   hash (id) {
@@ -107,6 +115,8 @@ class Transactions {
 
     state.hash = hash;
     state.status = CONFIRMED;
+
+    this.emit('update');
   }
 
   reject (id) {
@@ -117,6 +127,8 @@ class Transactions {
     }
 
     state.status = REJECTED;
+
+    this.emit('update');
 
     return true;
   }

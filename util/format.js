@@ -75,7 +75,13 @@ function bytesToAscii (bytes) {
 }
 
 function asciiToHex (string) {
-  return '0x' + string.split('').map((s) => s.charCodeAt(0).toString(16)).join('');
+  let result = '0x';
+
+  for (let i = 0; i < string.length; ++i) {
+    result += ('0' + string.charCodeAt(i).toString(16)).substr(-2);
+  }
+
+  return result;
 }
 
 function padRight (input, length) {

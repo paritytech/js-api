@@ -27,7 +27,9 @@ class LocalAccountsMiddleware extends Middleware {
   constructor (transport) {
     super(transport);
 
+    const NOOP = () => {};
     const register = this.register.bind(this);
+    const registerSubscribe = this.registerSubscribe.bind(this);
 
     register('eth_accounts', () => {
       return accounts.accountAddresses();
@@ -77,6 +79,14 @@ class LocalAccountsMiddleware extends Middleware {
       return accounts.dappsDefaultAddress;
     });
 
+    registerSubscribe('parity_defaultAccount', (_, callback) => {
+      callback(null, accounts.dappsDefaultAddress);
+
+      accounts.on('dappsDefaultAddressChange', (address) => {
+        callback(null, accounts.dappsDefaultAddress);
+      });
+    });
+
     register('parity_exportAccount', ([address, password]) => {
       const account = accounts.get(address);
 
@@ -109,6 +119,8 @@ class LocalAccountsMiddleware extends Middleware {
     register('parity_hardwareAccountsInfo', () => {
       return {};
     });
+
+    registerSubscribe('parity_hardwareAccountsInfo', NOOP);
 
     register('parity_newAccountFromPhrase', ([phrase, password]) => {
       return phraseToWallet(phrase)
@@ -267,7 +279,7 @@ class LocalAccountsMiddleware extends Middleware {
 
           return {};
         });
-    });
+      });
 
     register('signer_generateAuthorizationToken', () => {
       return '';
@@ -279,6 +291,16 @@ class LocalAccountsMiddleware extends Middleware {
 
     register('signer_requestsToConfirm', () => {
       return transactions.requestsToConfirm();
+    });
+
+    registerSubscribe('signer_subscribePending', (_, callback) => {
+      callback(null, transactions.requestsToConfirm());
+
+      transactions.on('update', () => {
+        callback(null, transactions.requestsToConfirm());
+      });
+
+      return false;
     });
   }
 }

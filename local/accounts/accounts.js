@@ -14,8 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const localStore = require('store');
+const EventEmitter = require('eventemitter3');
 const { debounce } = require('lodash');
+const localStore = require('store');
 
 const Account = require('./account');
 const { decryptPrivateKey } = require('../ethkey');
@@ -23,9 +24,9 @@ const { decryptPrivateKey } = require('../ethkey');
 const NULL_ADDRESS = '0x0000000000000000000000000000000000000000';
 const LS_STORE_KEY = '_parity::localAccounts';
 
-class Accounts {
+class Accounts extends EventEmitter {
   constructor (data = localStore.get(LS_STORE_KEY) || {}) {
-    this._lastState = JSON.stringify(data);
+    super();
 
     this.persist = debounce(() => {
       this._lastState = JSON.stringify(this);
@@ -34,6 +35,7 @@ class Accounts {
     }, 100);
 
     this._addAccount = this._addAccount.bind(this);
+    this._lastState = JSON.stringify(data);
 
     window.addEventListener('storage', ({ key, newValue }) => {
       if (key !== LS_STORE_KEY) {
@@ -132,6 +134,8 @@ class Accounts {
 
   set dappsDefaultAddress (value) {
     this._dappsDefaultAddress = value.toLowerCase();
+
+    this.emit('dappsDefaultAddressChange', this._dappsDefaultAddress);
 
     this.persist();
   }

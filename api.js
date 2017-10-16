@@ -35,10 +35,6 @@ class Api extends EventEmitter {
       console.warn(new Error('deprecated: Api needs provider with send() function, old-style Transport found instead'));
     }
 
-    if (provider && isFunction(provider.subscribe)) {
-      this._pubsub = new Pubsub(provider);
-    }
-
     this._provider = new Providers.PromiseProvider(provider);
     this._provider.on('connected', () => this.emit('connected'));
     this._provider.on('connecting', () => this.emit('connecting'));
@@ -55,10 +51,7 @@ class Api extends EventEmitter {
     this._trace = new Trace(this._provider);
     this._web3 = new Web3(this._provider);
 
-    if (allowSubscriptions) {
-      this._subscriptions = new Subscriptions(this);
-    }
-
+    // FIXME: Remove, convert to shell
     if (middlewareClass) {
       const middleware = this.parity
         .nodeKind()
@@ -72,6 +65,14 @@ class Api extends EventEmitter {
         .catch(() => null);
 
       provider.addMiddleware(middleware);
+    }
+
+    if (provider && isFunction(provider.subscribe)) {
+      this._pubsub = new Pubsub(provider);
+    }
+
+    if (allowSubscriptions) {
+      this._subscriptions = new Subscriptions(this);
     }
   }
 
