@@ -1,6 +1,5 @@
 {
-  "extends": ["semistandard", "standard-react"],
-  "parser": "babel-eslint",
+  "extends": ["semistandard"],
   "env": {
     "browser": true,
     "mocha": true,
@@ -12,7 +11,6 @@
   },
   "rules": {
     "curly": ["error", "all"],
-    "jsx-quotes": ["error", "prefer-single"],
     "newline-after-var": ["error", "always"],
     "no-alert": "error",
     "no-debugger": "error",
@@ -26,8 +24,6 @@
       "blocks": "never",
       "classes": "never",
       "switches": "never"
-    }],
-    "react/jsx-closing-bracket-location": "error",
-    "react/jsx-curly-spacing": ["error", "always"]
+    }]
   }
 }

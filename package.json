@@ -32,14 +32,6 @@
     "test": "NODE_ENV=test mocha ./*.spec.js ./**/*.spec.js"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-eslint": "^7.2.3",
-    "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-stage-0": "^6.24.1",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "es6-promise": "^4.1.1",
