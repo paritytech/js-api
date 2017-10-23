@@ -279,7 +279,7 @@ class LocalAccountsMiddleware extends Middleware {
 
           return {};
         });
-      });
+    });
 
     register('signer_generateAuthorizationToken', () => {
       return '';
