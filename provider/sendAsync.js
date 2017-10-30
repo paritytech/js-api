@@ -14,21 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const Current = require('./current');
-const Http = require('./http');
-const PostMessage = require('./postMessage');
-const PromiseProvider = require('./promise');
-const SendAsync = require('./sendAsync');
-const Ws = require('./ws');
+class SendAsync {
+  constructor (provider) {
+    this._provider = provider;
+  }
 
-const WsSecure = Ws;
+  send () {
+    throw new Error('Provider does not support the sync send(payload) method');
+  }
 
-module.exports = {
-  Current,
-  Http,
-  PostMessage,
-  PromiseProvider,
-  SendAsync,
-  Ws,
-  WsSecure
-};
+  sendAsync ({ method, params }, callback) {
+    this._provider.send(method, params, callback);
+  }
+}
+
+module.exports = SendAsync;

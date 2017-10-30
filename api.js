@@ -209,6 +209,7 @@ Api.Provider = {
   Current: Providers.Current,
   Http: Providers.Http,
   PostMessage: Providers.PostMessage,
+  SendAsync: Providers.SendAsync,
   Ws: Providers.Ws,
   WsSecure: Providers.WsSecure
 };
