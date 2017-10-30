@@ -28,7 +28,7 @@ function initProvider () {
 
 describe('api/provider/Current', () => {
   describe('send', () => {
-    it('calls the sendAsyn on the wrapped provider', (done) => {
+    it('calls the sendAsync on the wrapped provider', (done) => {
       initProvider().send('method', ['params'], (error, payload) => {
         expect(error).to.equal('error');
         console.log(payload);
