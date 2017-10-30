@@ -43,6 +43,10 @@ class PostMessage extends EventEmitter {
     return this._connected;
   }
 
+  get isParity () {
+    return true;
+  }
+
   setToken (token) {
     if (token) {
       this._connected = true;
