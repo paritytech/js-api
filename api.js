@@ -27,17 +27,15 @@ const util = require('./util');
 const { isFunction } = require('./util/types');
 
 class Api extends EventEmitter {
-  constructor (_provider, allowSubscriptions = true, middlewareClass) {
+  constructor (provider, allowSubscriptions = true, middlewareClass) {
     super();
-
-    let provider = _provider;
 
     if (!provider) {
       throw new Error('Provider needs to be supplied to Api instance');
     }
 
     if (isFunction(provider.sendAsync)) {
-      provider = new Providers.Current(_provider);
+      provider = new Providers.Current(provider);
     } else if (!isFunction(provider.send)) {
       console.log(provider);
       console.warn(new Error('deprecated: Api needs provider with send() function, old-style Transport found instead'));
