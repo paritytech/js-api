@@ -14,6 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
+const sinon = require('sinon');
+
 const ethereumRpc = require('@parity/jsonrpc');
 
 const { TEST_HTTP_URL, endpointTest } = require('./test/mockRpc');
@@ -38,6 +42,19 @@ describe('api/Api', () => {
             endpointTest(api, endpoint, method);
           });
       });
+    });
+  });
+
+  describe('constructor', () => {
+    it('wraps a currentProvider when supplied', () => {
+      const sendAsync = sinon.stub();
+      const currentProvider = {
+        sendAsync
+      };
+      const api = new Api(currentProvider);
+
+      api.provider.send('method', [], () => {});
+      expect(sendAsync).to.have.been.called;
     });
   });
 
