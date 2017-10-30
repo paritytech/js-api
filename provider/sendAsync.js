@@ -26,6 +26,10 @@ class SendAsync {
   sendAsync ({ method, params }, callback) {
     this._provider.send(method, params, callback);
   }
+
+  get isParity () {
+    return true;
+  }
 }
 
 module.exports = SendAsync;
