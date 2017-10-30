@@ -14,19 +14,32 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const Current = require('./current');
-const Http = require('./http');
-const PostMessage = require('./postMessage');
-const PromiseProvider = require('./promise');
-const Ws = require('./ws');
 
-const WsSecure = Ws;
+function initProvider () {
+  return new Current({
+    sendAsync: (payload, callback) => {
+      callback('error', payload); // eslint-disable-line
+    }
+  });
+}
 
-module.exports = {
-  Current,
-  Http,
-  PostMessage,
-  PromiseProvider,
-  Ws,
-  WsSecure
-};
+describe('api/provider/Current', () => {
+  describe('send', () => {
+    it('calls the sendAsyn on the wrapped provider', (done) => {
+      initProvider().send('method', ['params'], (error, payload) => {
+        expect(error).to.equal('error');
+        console.log(payload);
+        expect(payload).to.deep.equal({
+          id: 1,
+          jsonrpc: '2.0',
+          method: 'method',
+          params: ['params']
+        });
+        done();
+      });
+    });
+  });
+});
