@@ -14,21 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const Current = require('./current');
-const Http = require('./http');
-const PostMessage = require('./postMessage');
-const PromiseProvider = require('./promise');
-const SendAsync = require('./sendAsync');
-const Ws = require('./ws');
+const JsonRpcEncoder = require('../transport/jsonRpcEncoder');
 
-const WsSecure = Ws;
+class Current extends JsonRpcEncoder {
+  constructor (currentProvider) {
+    super();
 
-module.exports = {
-  Current,
-  Http,
-  PostMessage,
-  PromiseProvider,
-  SendAsync,
-  Ws,
-  WsSecure
-};
+    this._currentProvider = currentProvider;
+  }
+
+  send (method, params, callback) {
+    this._currentProvider.sendAsync(this.encodeObject(method, params), callback);
+  }
+}
+
+module.exports = Current;

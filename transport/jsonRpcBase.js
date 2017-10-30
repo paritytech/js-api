@@ -14,28 +14,16 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const EventEmitter = require('eventemitter3');
+const JsonRpcEncoder = require('./jsonRpcEncoder');
 const { Logging } = require('../subscriptions');
 
-class JsonRpcBase extends EventEmitter {
+class JsonRpcBase extends JsonRpcEncoder {
   constructor () {
     super();
 
-    this._id = 1;
     this._debug = false;
     this._connected = false;
     this._middlewareList = Promise.resolve([]);
-  }
-
-  encode (method, params) {
-    const json = JSON.stringify({
-      jsonrpc: '2.0',
-      method: method,
-      params: params,
-      id: this._id++
-    });
-
-    return json;
   }
 
   addMiddleware (Middleware) {
@@ -113,10 +101,6 @@ class JsonRpcBase extends EventEmitter {
       this._connected = false;
       this.emit('close');
     }
-  }
-
-  get id () {
-    return this._id;
   }
 
   get isDebug () {
