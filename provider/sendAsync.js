@@ -24,7 +24,9 @@ class SendAsync {
   }
 
   sendAsync ({ method, params }, callback) {
-    this._provider.send(method, params, callback);
+    this._provider.send(method, params, (error, result) => {
+      callback(error, { result });
+    });
   }
 
   get isParity () {
