@@ -32,6 +32,10 @@ class PromiseProvider extends EventEmitter {
     return this.provider.isConnected;
   }
 
+  get isParity () {
+    return true;
+  }
+
   send (method, ...params) {
     if (!this.provider.send) {
       // old-style transport interface for backwards compatibility
