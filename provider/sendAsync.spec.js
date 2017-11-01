@@ -36,7 +36,13 @@ describe('api/provider/SendAsync', () => {
   describe('sendAsync', () => {
     it('calls into the supplied provider', (done) => {
       initProvider().sendAsync({ method: 'method', params: 'params' }, (error, data) => { // eslint-disable-line
-        expect(data).to.deep.equal({ isStubbed: true, method: 'method', params: 'params' });
+        expect(data).to.deep.equal({
+          result: {
+            isStubbed: true,
+            method: 'method',
+            params: 'params'
+          }
+        });
         done();
       });
     });

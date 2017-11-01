@@ -24,7 +24,15 @@ class Current extends JsonRpcEncoder {
   }
 
   send (method, params, callback) {
-    this._currentProvider.sendAsync(this.encodeObject(method, params), callback);
+    this._currentProvider.sendAsync(this.encodeObject(method, params), (error, result) => {
+      if (error) {
+        callback(error);
+      } else if (result && result.result) {
+        callback(null, result.result);
+      } else {
+        callback(null, result);
+      }
+    });
   }
 }
 
