@@ -18,26 +18,48 @@
 
 const Current = require('./current');
 
-function initProvider () {
-  return new Current({
-    sendAsync: (payload, callback) => {
-      callback('error', payload); // eslint-disable-line
-    }
-  });
+function initProvider (sendAsync) { // eslint-disable-line standard/no-callback-literal
+  return new Current({ sendAsync });
 }
 
 describe('api/provider/Current', () => {
   describe('send', () => {
     it('calls the sendAsync on the wrapped provider', (done) => {
-      initProvider().send('method', ['params'], (error, payload) => {
-        expect(error).to.equal('error');
-        console.log(payload);
+      const sendAsync = (payload, callback) => {
+        callback(null, { result: payload });
+      };
+
+      initProvider(sendAsync).send('method', ['params'], (error, payload) => {
+        expect(error).not.to.be.ok;
         expect(payload).to.deep.equal({
           id: 1,
           jsonrpc: '2.0',
           method: 'method',
           params: ['params']
         });
+        done();
+      });
+    });
+
+    it('returns the embedded result object', (done) => {
+      const sendAsync = (payload, callback) => callback(null, {
+        result: 'xyz'
+      });
+
+      initProvider(sendAsync).send('', [], (error, result) => {
+        expect(error).not.to.be.ok;
+        expect(result).to.equal('xyz');
+        done();
+      });
+    });
+
+    it('returns the error', (done) => {
+      const sendAsync = (payload, callback) => {
+        callback('error'); // eslint-disable-line
+      };
+
+      initProvider(sendAsync).send('method', ['params'], (error, payload) => {
+        expect(error).to.equal('error');
         done();
       });
     });
