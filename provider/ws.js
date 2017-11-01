@@ -29,6 +29,10 @@ class Ws extends Transport {
       .then((result) => callback(null, result))
       .catch((error) => callback(error));
   }
+
+  get isParity () {
+    return true;
+  }
 }
 
 module.exports = Ws;

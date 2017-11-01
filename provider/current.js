@@ -34,6 +34,10 @@ class Current extends JsonRpcEncoder {
       }
     });
   }
+
+  get isParity () {
+    return true;
+  }
 }
 
 module.exports = Current;
