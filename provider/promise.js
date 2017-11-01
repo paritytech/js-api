@@ -33,7 +33,7 @@ class PromiseProvider extends EventEmitter {
   }
 
   get isParity () {
-    return true;
+    return !!this.provider.isParity;
   }
 
   send (method, ...params) {
