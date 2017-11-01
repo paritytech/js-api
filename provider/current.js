@@ -36,7 +36,7 @@ class Current extends JsonRpcEncoder {
   }
 
   get isParity () {
-    return true;
+    return !!this._currentProvider.isParity;
   }
 }
 
