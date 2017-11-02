@@ -63,9 +63,9 @@
     "sinon-chai": "2.8.0"
   },
   "dependencies": {
-    "@parity/abi": "^2",
-    "@parity/jsonrpc": "^2",
-    "@parity/wordlist": "^1.1.0",
+    "@parity/abi": "2.1.x",
+    "@parity/jsonrpc": "2.1.x",
+    "@parity/wordlist": "1.1.x",
     "bignumber.js": "3.0.1",
     "blockies": "0.0.2",
     "es6-error": "^4.0.0",
