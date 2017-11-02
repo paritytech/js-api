@@ -16,8 +16,8 @@
 
 const BigNumber = require('bignumber.js');
 
-const { isFunction, isInstanceOf } = require('../util/types');
-const { isAddress } = require('../util/address');
+const { isFunction, isInstanceOf } = require('../src/util/types');
+const { isAddress } = require('../src/util/address');
 
 const ZEROS = '000000000000000000000000000000000000000000000000000000000000';
 

@@ -17,8 +17,8 @@
 /* eslint-disable no-unused-expressions */
 
 const BigNumber = require('bignumber.js');
-const { TEST_WS_URL, mockWs } = require('../test/mockRpc');
-const { isBigNumber } = require('../test/types');
+const { TEST_WS_URL, mockWs } = require('../../test/mockRpc');
+const { isBigNumber } = require('../../test/types');
 
 const { WsSecure } = require('../provider');
 const Pubsub = require('./pubsub');

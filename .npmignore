@@ -1,0 +1,8 @@
+scripts
+src
+test
+.babelrc
+.editorconfig
+.eslintrc.json
+.gitignore
+.travis.yml

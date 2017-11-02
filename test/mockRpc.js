@@ -19,7 +19,7 @@
 const nock = require('nock');
 const MockWsServer = require('mock-socket').Server;
 
-const { isFunction } = require('../util/types');
+const { isFunction } = require('../src/util/types');
 
 const TEST_HTTP_URL = 'http://localhost:6688';
 const TEST_WS_URL = 'ws://localhost:8866';

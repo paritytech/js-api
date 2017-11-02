@@ -19,7 +19,7 @@
 const BigNumber = require('bignumber.js');
 
 const { outBlock, outAccountInfo, outAddress, outChainStatus, outDate, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeer, outPeers, outReceipt, outRecentDapps, outSyncing, outTransaction, outTrace, outVaultMeta } = require('./output');
-const { isAddress, isBigNumber, isInstanceOf } = require('../test/types');
+const { isAddress, isBigNumber, isInstanceOf } = require('../../test/types');
 
 describe('api/format/output', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';
