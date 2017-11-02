@@ -16,7 +16,7 @@
 
 const BigNumber = require('bignumber.js');
 
-const { toChecksumAddress } = require('@parity/abi/util/address');
+const { toChecksumAddress } = require('@parity/abi/lib/util/address');
 
 const { isString } = require('../util/types');
 

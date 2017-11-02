@@ -14,7 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { isAddress, toChecksumAddress } = require('@parity/abi/util/address');
+const { isAddress, toChecksumAddress } = require('@parity/abi/lib/util/address');
 
 module.exports = {
   isAddress,

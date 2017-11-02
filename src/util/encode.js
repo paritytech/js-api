@@ -15,7 +15,7 @@
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
 const Abi = require('@parity/abi');
-const Func = require('@parity/abi/spec/function');
+const Func = require('@parity/abi/lib/spec/function');
 
 const { abiDecode } = require('./decode');
 const { cleanupValue } = require('./format');
