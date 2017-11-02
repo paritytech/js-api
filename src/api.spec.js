@@ -20,7 +20,7 @@ const sinon = require('sinon');
 
 const ethereumRpc = require('@parity/jsonrpc');
 
-const { TEST_HTTP_URL, endpointTest } = require('./test/mockRpc');
+const { TEST_HTTP_URL, endpointTest } = require('../test/mockRpc');
 
 const util = require('./util');
 const Api = require('./api');

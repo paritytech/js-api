@@ -30,7 +30,7 @@ class SendAsync {
   }
 
   get isParity () {
-    return true;
+    return !!this._provider.isParity;
   }
 }
 

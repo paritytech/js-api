@@ -1,8 +1,8 @@
 {
   "name": "@parity/api",
   "description": "The Parity Promise-based API library for interfacing with Ethereum over RPC",
-  "version": "2.0.20",
-  "main": "index.js",
+  "version": "2.1.0",
+  "main": "lib/index.js",
   "author": "Parity Team <admin@parity.io>",
   "maintainers": [
     "Jaco Greeff",
@@ -25,13 +25,22 @@
     "node": ">=6.4"
   },
   "scripts": {
-    "build": "echo \"WARN: npm run build skipped\"",
+    "build": "rm -rf lib && babel src --out-dir lib --ignore *.spec.js",
     "lint": "npm run lint:css && npm run lint:js",
     "lint:css": "echo \"WARN: npm run lint:css skipped\"",
-    "lint:js": "eslint --ignore-path .gitignore .",
-    "test": "NODE_ENV=test mocha ./*.spec.js ./**/*.spec.js"
+    "lint:js": "eslint src",
+    "test": "NODE_ENV=test mocha ./src/*.spec.js ./src/**/*.spec.js"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-0": "^6.24.1",
     "chai": "3.5.0",
     "chai-as-promised": "6.0.0",
     "es6-promise": "^4.1.1",
