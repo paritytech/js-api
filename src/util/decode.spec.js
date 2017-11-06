@@ -44,8 +44,16 @@ describe('util/decode', () => {
       expect(() => decodeMethodInput(null, null)).to.throw(/should receive valid method/);
     });
 
-    it('expect valid hex parameter data', () => {
+    it('expects valid hex parameter data', () => {
       expect(() => decodeMethodInput({}, 'invalid')).to.throw(/should be a hex value/);
+    });
+
+    it('correct decodes null inputs', () => {
+      expect(decodeMethodInput({}, null)).to.deep.equal([]);
+    });
+
+    it('correct decodes empty inputs', () => {
+      expect(decodeMethodInput({}, '')).to.deep.equal([]);
     });
 
     it('correctly decodes valid inputs', () => {
