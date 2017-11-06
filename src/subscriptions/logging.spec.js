@@ -20,7 +20,7 @@ const sinon = require('sinon');
 
 const Logging = require('./logging');
 
-describe('api/subscriptions/logging', () => {
+describe('subscriptions/logging', () => {
   let cb;
   let logging;
 

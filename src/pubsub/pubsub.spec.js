@@ -23,7 +23,7 @@ const { isBigNumber } = require('../../test/types');
 const { WsSecure } = require('../provider');
 const Pubsub = require('./pubsub');
 
-describe('api/pubsub/Pubsub', () => {
+describe('pubsub/Pubsub', () => {
   let scope;
   let instance;
   const address = '0x63Cf90D3f0410092FC0fca41846f596223979195';

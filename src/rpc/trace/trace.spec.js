@@ -21,7 +21,7 @@ const Trace = require('./trace');
 
 const instance = new Trace(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
 
-describe('api/rpc/Trace', () => {
+describe('rpc/Trace', () => {
   let scope;
 
   describe('block', () => {

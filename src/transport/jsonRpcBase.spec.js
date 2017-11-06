@@ -22,7 +22,7 @@ const JsonRpcBase = require('./jsonRpcBase');
 
 const base = new JsonRpcBase();
 
-describe('api/transport/JsonRpcBase', () => {
+describe('transport/JsonRpcBase', () => {
   describe('setDebug', () => {
     it('starts with disabled flag', () => {
       expect(base.isDebug).to.be.false;

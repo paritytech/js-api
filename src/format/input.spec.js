@@ -21,7 +21,7 @@ const BigNumber = require('bignumber.js');
 const { inAddress, inBlockNumber, inData, inFilter, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex } = require('./input');
 const { isAddress } = require('../../test/types');
 
-describe('api/format/input', () => {
+describe('format/input', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';
 
   describe('inAddress', () => {

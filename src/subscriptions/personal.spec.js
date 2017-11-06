@@ -79,7 +79,7 @@ function stubLogging () {
   };
 }
 
-describe('api/subscriptions/personal', () => {
+describe('subscriptions/personal', () => {
   let api;
   let cb;
   let logging;

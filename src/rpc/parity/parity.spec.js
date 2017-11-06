@@ -25,7 +25,7 @@ const Parity = require('./parity');
 
 const instance = new Parity(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
 
-describe('api/rpc/parity', () => {
+describe('rpc/parity', () => {
   describe('accountsInfo', () => {
     it('retrieves the available account info', () => {
       mockHttp([{ method: 'parity_accountsInfo', reply: {

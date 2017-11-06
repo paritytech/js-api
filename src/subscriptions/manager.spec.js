@@ -50,7 +50,7 @@ function newStub () {
   return manager;
 }
 
-describe('api/subscriptions/manager', () => {
+describe('subscriptions/manager', () => {
   let manager;
 
   beforeEach(() => {

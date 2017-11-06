@@ -38,7 +38,7 @@ const VARIABLE = [
   '687474703a2f2f666f6f2e6261722f0000000000000000000000000000000000'
 ].join('');
 
-describe('api/util/encode', () => {
+describe('util/encode', () => {
   describe('encodeMethodCallAbi', () => {
     it('encodes calls with the correct result', () => {
       expect(encodeMethodCallAbi(ABI, [0x123, true])).to.equal(`0x${RESULT}`);

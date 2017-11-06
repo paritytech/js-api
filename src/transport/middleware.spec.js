@@ -34,7 +34,7 @@ class MockMiddleware extends Middleware {
   }
 }
 
-describe('api/transport/Middleware', () => {
+describe('transport/Middleware', () => {
   let transport;
 
   beforeEach(() => {

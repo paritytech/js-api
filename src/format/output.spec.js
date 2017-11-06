@@ -21,7 +21,7 @@ const BigNumber = require('bignumber.js');
 const { outBlock, outAccountInfo, outAddress, outChainStatus, outDate, outHistogram, outHwAccountInfo, outNodeKind, outNumber, outPeer, outPeers, outReceipt, outRecentDapps, outSyncing, outTransaction, outTrace, outVaultMeta } = require('./output');
 const { isAddress, isBigNumber, isInstanceOf } = require('../../test/types');
 
-describe('api/format/output', () => {
+describe('format/output', () => {
   const address = '0x63cf90d3f0410092fc0fca41846f596223979195';
   const checksum = '0x63Cf90D3f0410092FC0fca41846f596223979195';
 

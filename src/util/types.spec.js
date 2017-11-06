@@ -21,7 +21,7 @@ const sinon = require('sinon');
 const { isArray, isError, isFunction, isHex, isInstanceOf, isObject, isString } = require('./types');
 const Eth = require('../rpc/eth');
 
-describe('api/util/types', () => {
+describe('util/types', () => {
   describe('isArray', () => {
     it('correctly identifies null as false', () => {
       expect(isArray(null)).to.be.false;

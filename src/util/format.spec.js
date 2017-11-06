@@ -16,7 +16,7 @@
 
 const { bytesToHex, cleanupValue, hexToBytes, hexToAscii, bytesToAscii, asciiToHex } = require('./format');
 
-describe('api/util/format', () => {
+describe('util/format', () => {
   describe('bytesToHex', () => {
     it('correctly converts an empty array', () => {
       expect(bytesToHex([])).to.equal('0x');

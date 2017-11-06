@@ -19,7 +19,7 @@
 const { TEST_WS_URL, mockWs } = require('../../test/mockRpc');
 const Ws = require('./ws');
 
-describe('api/transport/ws', () => {
+describe('transport/ws', () => {
   let transport;
   let scope;
 

@@ -17,7 +17,7 @@
 const BigNumber = require('bignumber.js');
 const { abiDecode, decodeCallData, decodeMethodInput, methodToAbi } = require('./decode');
 
-describe('api/util/decode', () => {
+describe('util/decode', () => {
   const METH = '0x70a08231';
   const ENCO = '0x70a082310000000000000000000000005A5eFF38DA95b0D58b6C616f2699168B480953C9';
   const DATA = '0x0000000000000000000000005A5eFF38DA95b0D58b6C616f2699168B480953C9';

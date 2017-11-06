@@ -26,7 +26,7 @@ function initProvider () {
   });
 }
 
-describe('api/provider/SendAsync', () => {
+describe('provider/SendAsync', () => {
   describe('send', () => {
     it('throws an expection', () => {
       expect(() => initProvider().send()).to.throw;

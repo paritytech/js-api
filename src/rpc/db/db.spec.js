@@ -21,7 +21,7 @@ const Db = require('./db');
 
 const instance = new Db(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
 
-describe('api/rpc/Db', () => {
+describe('rpc/Db', () => {
   let scope;
 
   describe('putHex', () => {

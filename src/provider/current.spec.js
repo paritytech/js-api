@@ -22,7 +22,7 @@ function initProvider (sendAsync) { // eslint-disable-line standard/no-callback-
   return new Current({ sendAsync });
 }
 
-describe('api/provider/Current', () => {
+describe('provider/Current', () => {
   describe('send', () => {
     it('calls the sendAsync on the wrapped provider', (done) => {
       const sendAsync = (payload, callback) => {

@@ -45,7 +45,7 @@ function stubApi (blockNumber) {
   };
 }
 
-describe('api/subscriptions/eth', () => {
+describe('subscriptions/eth', () => {
   let api;
   let eth;
   let cb;

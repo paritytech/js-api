@@ -16,7 +16,7 @@
 
 const { _getUnitMultiplier, fromWei, toWei } = require('./wei');
 
-describe('api/util/wei', () => {
+describe('util/wei', () => {
   describe('_getUnitMultiplier', () => {
     it('returns 10^0 for wei', () => {
       expect(_getUnitMultiplier('wei')).to.equal(10 ** 0);

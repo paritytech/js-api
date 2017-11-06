@@ -21,7 +21,7 @@ const Http = require('./http');
 
 const transport = new Http(TEST_HTTP_URL, -1);
 
-describe('api/transport/Http', () => {
+describe('transport/Http', () => {
   describe('instance', () => {
     it('encodes the options correctly', () => {
       const opt = transport._encodeOptions('someMethod', ['param']);

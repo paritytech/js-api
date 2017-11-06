@@ -20,7 +20,7 @@ const JsonRpcEncoder = require('./jsonRpcEncoder');
 
 const encoder = new JsonRpcEncoder();
 
-describe('api/transport/JsonRpcEncoder', () => {
+describe('transport/JsonRpcEncoder', () => {
   describe('encodeObject', () => {
     it('encodes the body correctly, incrementing id', () => {
       const id = encoder.id;

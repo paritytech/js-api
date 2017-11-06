@@ -21,7 +21,7 @@ const Web3 = require('./web3');
 
 const instance = new Web3(new PromiseProvider(new Http(TEST_HTTP_URL, -1)));
 
-describe('api/rpc/Web3', () => {
+describe('rpc/Web3', () => {
   let scope;
 
   describe('sha3', () => {

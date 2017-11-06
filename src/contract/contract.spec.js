@@ -32,7 +32,7 @@ const { isInstanceOf, isFunction } = require('../util/types');
 const provider = new Api.Provider.Http(TEST_HTTP_URL, -1);
 const eth = new Api(provider);
 
-describe('api/contract/Contract', () => {
+describe('contract/Contract', () => {
   const ADDR = '0x0123456789';
 
   const ABI = [

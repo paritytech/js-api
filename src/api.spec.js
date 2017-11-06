@@ -25,7 +25,7 @@ const { TEST_HTTP_URL, endpointTest } = require('../test/mockRpc');
 const util = require('./util');
 const Api = require('./api');
 
-describe('api/Api', () => {
+describe('Api', () => {
   describe('interface', () => {
     const api = new Api(new Api.Provider.Http(TEST_HTTP_URL, -1));
     const ignored = [
