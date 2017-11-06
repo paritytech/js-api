@@ -84,3 +84,13 @@ contract.instance
 ## apis
 
 APIs implement the calls as exposed in the [Ethcore JSON Ethereum RPC](https://github.com/paritytech/js-api) definitions. Mapping follows the naming conventions of the originals, i.e. `eth_call` becomes `eth.call`, `personal_accounts` becomes `personal.accounts`, etc.
+
+## public node
+
+For operation within a public node, the following dependencies needs to be added (this functionality will be moved shortly) -
+
+```
+"ethereumjs-tx": "^1.2.5"
+"keythereum": "0.4.6"
+"secp256k1": "3.2.5"
+```
