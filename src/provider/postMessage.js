@@ -19,7 +19,7 @@ const EventEmitter = require('eventemitter3');
 const METHOD_REQUEST_TOKEN = 'shell_requestNewToken';
 
 class PostMessage extends EventEmitter {
-  constructor (appId, destination) {
+  constructor (appId, destination, source) {
     super();
 
     this._appId = appId;
@@ -36,7 +36,7 @@ class PostMessage extends EventEmitter {
     this.subscribe = this.subscribe.bind(this);
     this.unsubscribe = this.unsubscribe.bind(this);
 
-    window.addEventListener('message', this._receiveMessage, false);
+    (source || window).addEventListener('message', this._receiveMessage, false);
   }
 
   get isConnected () {
