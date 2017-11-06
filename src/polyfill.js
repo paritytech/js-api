@@ -19,5 +19,5 @@ if (typeof fetch === 'undefined') {
 }
 
 if (typeof Promise === 'undefined') {
-  global.Promise = require('es6-promise').Promise;
+  require('es6-promise').polyfill();
 }
