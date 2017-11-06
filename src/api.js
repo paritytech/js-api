@@ -37,8 +37,7 @@ class Api extends EventEmitter {
     if (isFunction(provider.sendAsync)) {
       provider = new Providers.Current(provider);
     } else if (!isFunction(provider.send)) {
-      console.log(provider);
-      console.warn(new Error('deprecated: Api needs provider with send() function, old-style Transport found instead'));
+      console.warn(new Error('deprecated: Api needs provider with send() function, old-style Transport found instead'), provider);
     }
 
     this._provider = new Providers.PromiseProvider(provider);
