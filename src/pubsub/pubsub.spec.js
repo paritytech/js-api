@@ -80,9 +80,9 @@ describe('pubsub/Pubsub', () => {
       instance.parity.accountsInfo().then(s => {
         instance.parity.unsubscribe(s).then(b => {
           expect(b).to.be.true;
+          done();
         });
       });
-      done();
     });
   });
 
