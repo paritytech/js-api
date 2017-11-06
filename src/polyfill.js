@@ -14,8 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-require('./polyfill');
+if (typeof fetch === 'undefined') {
+  require('isomorphic-fetch');
+}
 
-const Api = require('./api');
-
-module.exports = Api;
+if (typeof Promise === 'undefined') {
+  global.Promise = require('es6-promise').Promise;
+}
