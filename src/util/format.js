@@ -85,15 +85,17 @@ function asciiToHex (string) {
 }
 
 function padRight (input, length) {
-  const value = toHex(input).substr(2, length * 2);
+  const hexLength = length * 2;
+  const value = toHex(input).substr(2, hexLength);
 
-  return '0x' + value + range(length * 2 - value.length).map(() => '0').join('');
+  return '0x' + value + range(hexLength - value.length).map(() => '0').join('');
 }
 
 function padLeft (input, length) {
-  const value = toHex(input).substr(2, length * 2);
+  const hexLength = length * 2;
+  const value = toHex(input).substr(2, hexLength);
 
-  return '0x' + range(length * 2 - value.length).map(() => '0').join('') + value;
+  return '0x' + range(hexLength - value.length).map(() => '0').join('') + value;
 }
 
 function toHex (str) {

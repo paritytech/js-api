@@ -14,9 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
-const { bytesToHex, cleanupValue, hexToBytes, hexToAscii, bytesToAscii, asciiToHex } = require('./format');
+const { bytesToHex, cleanupValue, hexToBytes, hexToAscii, bytesToAscii, asciiToHex, padLeft, padRight } = require('./format');
 
-describe('util/format', () => {
+describe.only('util/format', () => {
   describe('bytesToHex', () => {
     it('correctly converts an empty array', () => {
       expect(bytesToHex([])).to.equal('0x');
@@ -97,6 +97,18 @@ describe('util/format', () => {
 
     it('correctly converts a non-empty string', () => {
       expect(bytesToAscii([97, 98, 99])).to.equal('abc');
+    });
+  });
+
+  describe('padLeft', () => {
+    it('correctly pads to the number of hex digits', () => {
+      expect(padLeft('ab', 4)).to.equal('0x000000ab');
+    });
+  });
+
+  describe('padRight', () => {
+    it('correctly pads to the number of hex digits', () => {
+      expect(padRight('ab', 4)).to.equal('0xab000000');
     });
   });
 });
