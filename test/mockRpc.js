@@ -19,8 +19,6 @@
 const nock = require('nock');
 const MockWsServer = require('mock-socket').Server;
 
-const { isFunction } = require('../src/util/types');
-
 const TEST_HTTP_URL = 'http://localhost:6688';
 const TEST_WS_URL = 'ws://localhost:8866';
 
@@ -81,30 +79,9 @@ function mockWs (requests) {
   return scope;
 }
 
-function endpointTest (instance, moduleId, name) {
-  describe(name, () => {
-    it(`has the ${moduleId}.${name} endpoint`, () => {
-      expect(isFunction(instance[moduleId][name])).to.be.ok;
-    });
-
-    it(`maps to ${moduleId}_${name} via RPC`, () => {
-      const scope = mockHttp([{ method: `${moduleId}_${name}`, reply: {} }]);
-
-      return instance[moduleId][name]()
-        .then(() => {
-          expect(scope.isDone()).to.be.true;
-        })
-        .catch(() => {
-          nock.cleanAll();
-        });
-    });
-  });
-}
-
 module.exports = {
   TEST_HTTP_URL,
   TEST_WS_URL,
   mockHttp,
-  mockWs,
-  endpointTest
+  mockWs
 };
