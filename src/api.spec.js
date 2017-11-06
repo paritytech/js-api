@@ -26,7 +26,7 @@ const util = require('./util');
 const Api = require('./api');
 
 describe('Api', () => {
-  describe('interface', () => {
+  describe('interface', (done) => {
     const api = new Api(new Api.Provider.Http(TEST_HTTP_URL, -1));
     const ignored = [
       'eth_subscribe', 'eth_unsubscribe',
@@ -36,10 +36,19 @@ describe('Api', () => {
 
     Object.keys(ethereumRpc).sort().forEach((endpoint) => {
       describe(endpoint, () => {
-        Object.keys(ethereumRpc[endpoint]).sort()
+        Object
+          .keys(ethereumRpc[endpoint])
+          .sort()
           .filter(method => ignored.indexOf(method) !== -1)
-          .forEach((method) => {
+          .map((method) => {
             endpointTest(api, endpoint, method);
+          })
+          .find((item, index) => {
+            if (index === 0) {
+              done();
+            }
+
+            return false;
           });
       });
     });
