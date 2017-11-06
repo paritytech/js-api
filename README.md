@@ -6,6 +6,7 @@ Parity.js is a thin, fast, Promise-based wrapper around the Ethereum APIs.
 [![Coverage Status](https://coveralls.io/repos/github/paritytech/js-api/badge.svg?branch=master)](https://coveralls.io/github/paritytech/js-api?branch=master)
 [![Dependency Status](https://david-dm.org/paritytech/js-api.svg)](https://david-dm.org/paritytech/js-api)
 [![devDependency Status](https://david-dm.org/paritytech/js-api/dev-status.svg)](https://david-dm.org/paritytech/js-api#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/github/paritytech/js-api/badge.svg?branch=master)](https://coveralls.io/github/paritytech/js-api?branch=master)
 
 ## installation
 
