@@ -48,7 +48,7 @@ function createProvider () {
   return provider;
 }
 
-describe('provider/postMessage', () => {
+describe('provider/PostMessage', () => {
   beforeEach(() => {
     createProvider();
   });
@@ -69,6 +69,7 @@ describe('provider/postMessage', () => {
     describe('isConnected', () => {
       it('returns the internal connected status', () => {
         provider._connected = 'connected';
+
         expect(provider.isConnected).to.equal('connected');
       });
     });
@@ -85,19 +86,49 @@ describe('provider/postMessage', () => {
 
     it('sets the connected status', () => {
       expect(provider.isConnected).to.be.false;
+
       provider.setToken('123');
+
       expect(provider.isConnected).to.be.true;
     });
 
     it('sends all queued messages', () => {
-      expect(provider._sendQueued).to.not.have.beenCalled;
+      expect(provider._sendQueued).not.to.have.beenCalled;
+
       provider.setToken('123');
+
       expect(provider._sendQueued).to.have.been.called;
     });
 
     it('emits a connected message', (done) => {
       provider.on('connected', done);
       provider.setToken('123');
+    });
+  });
+
+  describe('send', () => {
+    it('queues messages before token is available', () => {
+      expect(provider.queuedCount).to.equal(0);
+
+      provider.send('method', 'params', () => {});
+
+      expect(destination.postMessage).not.to.have.been.called;
+      expect(provider.queuedCount).to.equal(1);
+    });
+
+    it('sends queued messages as token is available', () => {
+      expect(provider.queuedCount).to.equal(0);
+
+      provider.send('method', 'params', () => {});
+      provider.setToken('123');
+
+      expect(destination.postMessage).to.have.been.calledWith(
+        provider._constructMessage(1, {
+          method: 'method',
+          params: 'params'
+        }), '*'
+      );
+      expect(provider.queuedCount).to.equal(0);
     });
   });
 });

@@ -47,6 +47,10 @@ class PostMessage extends EventEmitter {
     return true;
   }
 
+  get queuedCount () {
+    return this._queued.length;
+  }
+
   setToken (token) {
     if (token) {
       this._connected = true;
@@ -72,6 +76,15 @@ class PostMessage extends EventEmitter {
     });
   }
 
+  _constructMessage (id, data) {
+    return Object.assign({}, data, {
+      id,
+      to: 'shell',
+      from: this._appId,
+      token: this._token
+    });
+  }
+
   _send (message) {
     if (!this._token && message.data.method !== METHOD_REQUEST_TOKEN) {
       this._queued.push(message);
@@ -80,12 +93,7 @@ class PostMessage extends EventEmitter {
     }
 
     const id = ++this.id;
-    const postMessage = Object.assign({}, message.data, {
-      id,
-      to: 'shell',
-      from: this._appId,
-      token: this._token
-    });
+    const postMessage = this._constructMessage(id, message.data);
 
     this._messages[id] = Object.assign({}, postMessage, message.options);
     this._destination.postMessage(postMessage, '*');
