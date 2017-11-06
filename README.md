@@ -87,7 +87,7 @@ APIs implement the calls as exposed in the [Ethcore JSON Ethereum RPC](https://g
 
 ## public node
 
-For operation within a public node, the following dependencies needs to be added (this functionality will be moved shortly) -
+For operation within a public node, the following peerDependencies needs to be added (this functionality will be moved shortly) -
 
 ```
 "ethereumjs-tx": "^1.2.5"
