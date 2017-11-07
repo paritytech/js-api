@@ -18,11 +18,20 @@
 
 const Current = require('./current');
 
-function initProvider (sendAsync) { // eslint-disable-line standard/no-callback-literal
-  return new Current({ sendAsync });
+function initProvider (sendAsync, isParity = false) { // eslint-disable-line standard/no-callback-literal
+  return new Current({
+    sendAsync,
+    isParity
+  });
 }
 
 describe('provider/Current', () => {
+  describe('isParity', () => {
+    it('returns the value of the embedded provider', () => {
+      expect(initProvider(null, true).isParity).to.be.true;
+    });
+  });
+
   describe('send', () => {
     it('calls the sendAsync on the wrapped provider', (done) => {
       const sendAsync = (payload, callback) => {
@@ -45,6 +54,16 @@ describe('provider/Current', () => {
       const sendAsync = (payload, callback) => callback(null, {
         result: 'xyz'
       });
+
+      initProvider(sendAsync).send('', [], (error, result) => {
+        expect(error).not.to.be.ok;
+        expect(result).to.equal('xyz');
+        done();
+      });
+    });
+
+    it('returns a non-embedded result (fallback)', (done) => {
+      const sendAsync = (payload, callback) => callback(null, 'xyz');
 
       initProvider(sendAsync).send('', [], (error, result) => {
         expect(error).not.to.be.ok;
