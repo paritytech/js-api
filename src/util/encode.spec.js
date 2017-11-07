@@ -14,6 +14,8 @@
 // You should have received a copy of the GNU General Public License
 // along with Parity.  If not, see <http://www.gnu.org/licenses/>.
 
+/* eslint-disable no-unused-expressions */
+
 const { abiEncode, abiUnencode, abiSignature, encodeMethodCallAbi } = require('./encode');
 
 const ABI = {
@@ -76,6 +78,10 @@ describe('util/encode', () => {
           ]
         }], '0x1acb6f7700000000000000000000000000000038')
       ).to.deep.equal(['test', { arga: 56 }, [56]]);
+    });
+
+    it('returns null when function not found', () => {
+      expect(abiUnencode([], '0x12345678')).to.be.null;
     });
   });
 
