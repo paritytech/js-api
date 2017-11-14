@@ -40,8 +40,8 @@ function isHex (_test) {
   const test = _test.toLowerCase();
   let hex = true;
 
-  for (let idx = 0; hex && idx < test.length; idx++) {
-    hex = HEXDIGITS.includes(test[idx]);
+  for (let index = 0; hex && index < test.length; index++) {
+    hex = HEXDIGITS.includes(test[index]);
   }
 
   return hex;

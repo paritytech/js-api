@@ -381,7 +381,7 @@ class Contract {
     // If event provided, remove the potential event signature
     // as the first element of the topics
     const topics = signature
-      ? [ signature ].concat(optionTopics.filter((t, idx) => idx > 0 || t !== signature))
+      ? [ signature ].concat(optionTopics.filter((t, index) => index > 0 || t !== signature))
       : optionTopics;
 
     const options = Object.assign({}, _options, {
