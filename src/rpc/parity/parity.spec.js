@@ -17,8 +17,9 @@
 /* eslint-disable no-unused-expressions */
 
 const BigNumber = require('bignumber.js');
-const { TEST_HTTP_URL, mockHttp } = require('../../test/mockRpc');
-const { isBigNumber } = require('../../test/types');
+
+const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const { isBigNumber } = require('../../../test/types');
 
 const { Http, PromiseProvider } = require('../../provider');
 const Parity = require('./parity');

@@ -16,8 +16,8 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { TEST_HTTP_URL, mockHttp } = require('../../test/mockRpc');
-const { isBigNumber } = require('../../test/types');
+const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
+const { isBigNumber } = require('../../../test/types');
 
 const { Http, PromiseProvider } = require('../../provider');
 const Net = require('./net');

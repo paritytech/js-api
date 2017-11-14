@@ -16,7 +16,7 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { TEST_HTTP_URL, mockHttp } = require('../../test/mockRpc');
+const { TEST_HTTP_URL, mockHttp } = require('../../../test/mockRpc');
 const Http = require('./http');
 
 const transport = new Http(TEST_HTTP_URL, -1);
@@ -32,7 +32,7 @@ describe('transport/Http', () => {
           'Content-Type': 'application/json',
           'Content-Length': 65
         },
-        body: `{"jsonrpc":"2.0","method":"someMethod","params":["param"],"id":${transport._id - 1}}`
+        body: `{"id":${transport._id - 1},"jsonrpc":"2.0","method":"someMethod","params":["param"]}`
       };
 
       expect(opt).to.deep.equal(enc);

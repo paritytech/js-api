@@ -16,7 +16,7 @@
 
 /* eslint-disable no-unused-expressions */
 
-const { TEST_WS_URL, mockWs } = require('../../test/mockRpc');
+const { TEST_WS_URL, mockWs } = require('../../../test/mockRpc');
 const Ws = require('./ws');
 
 describe('transport/ws', () => {
