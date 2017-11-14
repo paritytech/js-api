@@ -18,7 +18,7 @@
 
 const BigNumber = require('bignumber.js');
 
-const { inAddress, inAddresses, inBlockNumber, inData, inFilter, inHash, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex } = require('./input');
+const { inAddress, inAddresses, inBlockNumber, inData, inFilter, inHash, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex, inTopics } = require('./input');
 const { isAddress } = require('../../test/types');
 
 describe('format/input', () => {
@@ -354,6 +354,34 @@ describe('format/input', () => {
           index: 5,
           type: 'soft'
         }
+      ]);
+    });
+  });
+
+  describe('inTopics', () => {
+    it('returns empty array when no inputs provided', () => {
+      expect(inTopics()).to.deep.equal([]);
+    });
+
+    it('keeps null topic as null', () => {
+      expect(inTopics([null])).to.deep.equal([null]);
+    });
+
+    it('pads topics as received', () => {
+      expect(inTopics(['123'])).to.deep.equal([
+        '0x0000000000000000000000000000000000000000000000000000000000000123'
+      ]);
+    });
+
+    it('handles nested arrays', () => {
+      expect(inTopics([null, '123', ['456', null, '789']])).to.deep.equal([
+        null,
+        '0x0000000000000000000000000000000000000000000000000000000000000123',
+        [
+          '0x0000000000000000000000000000000000000000000000000000000000000456',
+          null,
+          '0x0000000000000000000000000000000000000000000000000000000000000789'
+        ]
       ]);
     });
   });

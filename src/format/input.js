@@ -55,8 +55,8 @@ function inHash (hash) {
   return inHex(hash);
 }
 
-function inTopics (_topics) {
-  let topics = (_topics || [])
+function inTopics (topics) {
+  return (topics || [])
     .filter((topic) => topic === null || topic)
     .map((topic) => {
       if (topic === null) {
@@ -69,8 +69,6 @@ function inTopics (_topics) {
 
       return padLeft(topic, 32);
     });
-
-  return topics;
 }
 
 function inFilter (options) {
