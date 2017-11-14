@@ -18,7 +18,7 @@
 
 const BigNumber = require('bignumber.js');
 
-const { inAddress, inBlockNumber, inData, inFilter, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex } = require('./input');
+const { inAddress, inAddresses, inBlockNumber, inData, inFilter, inHash, inHex, inNumber10, inNumber16, inOptions, inTraceType, inDeriveHash, inDeriveIndex } = require('./input');
 const { isAddress } = require('../../test/types');
 
 describe('format/input', () => {
@@ -41,6 +41,21 @@ describe('format/input', () => {
 
     it('returns 0x on null addresses', () => {
       expect(inAddress()).to.equal('0x');
+    });
+  });
+
+  describe('inAddresses', () => {
+    it('handles empty values', () => {
+      expect(inAddresses()).to.deep.equal([]);
+    });
+
+    it('handles mapping of all addresses in array', () => {
+      const address = '63cf90d3f0410092fc0fca41846f596223979195';
+
+      expect(inAddresses([null, address])).to.deep.equal([
+        '0x',
+        `0x${address}`
+      ]);
     });
   });
 
@@ -100,6 +115,12 @@ describe('format/input', () => {
     it('handles empty & null', () => {
       expect(inHex()).to.equal('0x');
       expect(inHex('')).to.equal('0x');
+    });
+  });
+
+  describe('inHash', () => {
+    it('leaves leading 0x as-is', () => {
+      expect(inHash('0x123456')).to.equal('0x123456');
     });
   });
 
