@@ -34,7 +34,7 @@ class JsonRpcBase extends JsonRpcEncoder {
       ])
       .then(([Middleware, middlewareList]) => {
         // Do nothing if `handlerPromise` resolves to a null-y value.
-        if (Middleware == null) {
+        if (!Middleware) {
           return middlewareList;
         }
 

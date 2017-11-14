@@ -18,11 +18,42 @@
 
 const sinon = require('sinon');
 
+const { isInstanceOf } = require('../util/types');
+
 const JsonRpcBase = require('./jsonRpcBase');
 
 const base = new JsonRpcBase();
 
 describe('transport/JsonRpcBase', () => {
+  describe('addMiddleware', () => {
+    it('checks for Middleware null', (done) => {
+      const base2 = new JsonRpcBase();
+
+      base2.addMiddleware(null);
+      base2._middlewareList.then((list) => {
+        expect(list).to.deep.equal([]);
+        done();
+      });
+    });
+
+    it('intialises Middleware added', (done) => {
+      const base2 = new JsonRpcBase();
+
+      class Middleware {
+        constructor (parent) {
+          expect(parent).to.equal(base2);
+        }
+      }
+
+      base2.addMiddleware(Middleware);
+      base2._middlewareList.then((list) => {
+        expect(list.length).to.equal(1);
+        expect(isInstanceOf(list[0], Middleware)).to.be.true;
+        done();
+      });
+    });
+  });
+
   describe('setDebug', () => {
     it('starts with disabled flag', () => {
       expect(base.isDebug).to.be.false;
