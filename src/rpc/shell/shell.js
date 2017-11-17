@@ -29,6 +29,11 @@ class Shell {
       .send('shell_getFilteredMethods');
   }
 
+  getMethodGroups () {
+    return this._provider
+      .send('shell_getMethodGroups');
+  }
+
   getMethodPermissions () {
     return this._provider
       .send('shell_getMethodPermissions');
