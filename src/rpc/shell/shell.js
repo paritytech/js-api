@@ -53,6 +53,11 @@ class Shell {
     return this._provider
       .send('shell_setAppVisibility', appId, state);
   }
+
+  setAppPinned (appId, state) {
+    return this._provider
+      .send('shell_setAppPinned', appId, state);
+  }
 }
 
 module.exports = Shell;
