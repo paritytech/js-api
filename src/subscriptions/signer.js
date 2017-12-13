@@ -25,7 +25,7 @@ class Signer {
 
     this._listRequests = this._listRequests.bind(this);
 
-    this._api.transport.on('close', () => {
+    this._api.provider.on('close', () => {
       if (this.isStarted) {
         this.start();
       }
@@ -74,7 +74,7 @@ class Signer {
       }
     };
 
-    if (!this._api.transport.isConnected) {
+    if (!this._api.isConnected) {
       nextTimeout(500, true);
       return;
     }

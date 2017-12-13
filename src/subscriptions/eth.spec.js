@@ -30,7 +30,7 @@ function stubApi (blockNumber) {
 
   return {
     _calls,
-    transport: {
+    provider: {
       isConnected: true,
       on: () => {}
     },

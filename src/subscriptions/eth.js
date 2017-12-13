@@ -26,7 +26,7 @@ class Eth {
     this._pollTimerId = null;
     this._pollBlockNumber = this._pollBlockNumber.bind(this);
 
-    this._api.transport.on('close', () => {
+    this._api.provider.on('close', () => {
       if (this.isStarted) {
         this.start();
       }
@@ -70,7 +70,7 @@ class Eth {
       }
     };
 
-    if (!this._api.transport.isConnected) {
+    if (!this._api.provider.isConnected) {
       nextTimeout(500, true);
       return;
     }
