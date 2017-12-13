@@ -174,7 +174,9 @@ class PostMessage extends EventEmitter {
 
     const { data } = this._messages[id];
 
-    Logging.send(data.method || data.api, data.params, { result });
+    if (data) {
+      Logging.send(data.method || data.api, data.params, { result });
+    }
 
     if (this._messages[id].subscription) {
       // console.log('subscription', result, 'initial?', this._messages[id].initial);
