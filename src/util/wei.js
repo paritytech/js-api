@@ -25,7 +25,7 @@ function _getUnitMultiplier (unit) {
     throw new Error(`Unknown unit ${unit} passed to wei formatter`);
   }
 
-  return 10 ** (position * 3);
+  return Math.pow(10, position * 3);
 }
 
 function fromWei (value, unit = 'ether') {
