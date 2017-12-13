@@ -35,7 +35,7 @@ echo "Publishing to npm"
 
 npm run ci:makeshift
 npm --no-git-tag-version version
-npm version patch -m "[CI Skip] Version bump"
+npm version patch -m "[CI Skip] %s"
 npm publish
 
 echo "Final push to GitHub"
