@@ -67,7 +67,7 @@ attach contract
 ```javascript
 const abi = [{ name: 'callMe', inputs: [{ type: 'bool', ...}, { type: 'string', ...}]}, ...abi...];
 const address = '0x123456...9abc';
-const contract = new api.newContract(abi, address);
+const contract = api.newContract(abi, address);
 ```
 
 find & call a function
