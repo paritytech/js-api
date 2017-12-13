@@ -19,15 +19,15 @@ const { _getUnitMultiplier, fromWei, toWei } = require('./wei');
 describe('util/wei', () => {
   describe('_getUnitMultiplier', () => {
     it('returns 10^0 for wei', () => {
-      expect(_getUnitMultiplier('wei')).to.equal(10 ** 0);
+      expect(_getUnitMultiplier('wei')).to.equal(Math.pow(10, 0));
     });
 
     it('returns 10^15 for finney', () => {
-      expect(_getUnitMultiplier('finney')).to.equal(10 ** 15);
+      expect(_getUnitMultiplier('finney')).to.equal(Math.pow(10, 15));
     });
 
     it('returns 10^18 for ether', () => {
-      expect(_getUnitMultiplier('ether')).to.equal(10 ** 18);
+      expect(_getUnitMultiplier('ether')).to.equal(Math.pow(10, 18));
     });
 
     it('throws an error on invalid units', () => {

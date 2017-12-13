@@ -26,7 +26,7 @@ function newStub () {
   const start = () => manager._updateSubscriptions(manager.__test, null, 'test');
 
   const manager = new Manager({
-    transport: {
+    provider: {
       isConnected: true,
       on: sinon.stub()
     }

@@ -28,7 +28,7 @@ class Personal {
     this._defaultAccount = this._defaultAccount.bind(this);
     this._listAccounts = this._listAccounts.bind(this);
 
-    this._api.transport.on('close', () => {
+    this._api.provider.on('close', () => {
       if (this.isStarted) {
         this.start();
       }
@@ -85,7 +85,7 @@ class Personal {
       }
     };
 
-    if (!this._api.transport.isConnected) {
+    if (!this._api.isConnected) {
       nextTimeout(500);
       return;
     }
