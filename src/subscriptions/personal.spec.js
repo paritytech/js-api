@@ -38,6 +38,7 @@ function stubApi (accounts, info) {
 
   return {
     _calls,
+    isConnected: true,
     provider: {
       isConnected: true,
       on: sinon.stub()
