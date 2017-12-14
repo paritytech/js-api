@@ -83,7 +83,7 @@ class Manager {
         try {
           const [fnSection, fnName] = subscriptionName.split('_');
 
-          resolve(this._api[fnSection][fnName](callback));
+          resolve(this._api.pubsub[fnSection][fnName](callback));
         } catch (error) {
           reject(error);
         }
