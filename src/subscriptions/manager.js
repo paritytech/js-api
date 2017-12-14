@@ -46,6 +46,11 @@ class Manager {
       };
     });
 
+    // in the case of a pubsub compliant, don't use the engines
+    if (this._api.isPubSub) {
+      return;
+    }
+
     this._updateSubscriptions = this._updateSubscriptions.bind(this);
 
     this._logging = new Logging(this._updateSubscriptions);
@@ -70,6 +75,19 @@ class Manager {
 
       if (isError(subscription)) {
         reject(subscription);
+        return;
+      }
+
+      // use normal pub-sub as available
+      if (this._api.isPubSub) {
+        try {
+          const [fnSection, fnName] = subscriptionName.split('_');
+
+          resolve(this._api[fnSection][fnName](callback));
+        } catch (error) {
+          reject(error);
+        }
+
         return;
       }
 

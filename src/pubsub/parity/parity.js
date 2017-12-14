@@ -33,6 +33,14 @@ class Parity extends PubsubBase {
     });
   }
 
+  allAccountsInfo (callback) {
+    return this.addListener(this._api, 'parity_allAccountsInfo', (error, data) => {
+      error
+        ? callback(error)
+        : callback(null, outAccountInfo(data));
+    });
+  }
+
   hardwareAccountsInfo (callback) {
     return this.addListener(this._api, 'parity_hardwareAccountsInfo', (error, data) => {
       error
@@ -264,15 +272,6 @@ class Parity extends PubsubBase {
 
   cidV0 (callback, data) {
     return this.addListener(this._api, 'parity_cidV0', callback, [inData(data)]);
-  }
-
-  // parity accounts API (only secure API or configured to be exposed)
-  allAccountsInfo (callback) {
-    return this.addListener(this._api, 'parity_allAccountsInfo', (error, data) => {
-      error
-        ? callback(error)
-        : callback(null, outAccountInfo(data));
-    });
   }
 
   getDappAddresses (callback, dappId) {
