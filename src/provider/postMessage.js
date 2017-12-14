@@ -16,8 +16,6 @@
 
 const EventEmitter = require('eventemitter3');
 
-const { Logging } = require('../subscriptions');
-
 const METHOD_REQUEST_TOKEN = 'shell_requestNewToken';
 
 class PostMessage extends EventEmitter {
@@ -170,12 +168,6 @@ class PostMessage extends EventEmitter {
 
     if (from !== 'shell' || to !== this._appId || !isTokenValid) {
       return;
-    }
-
-    const { data } = this._messages[id];
-
-    if (data) {
-      Logging.send(data.method || data.api, data.params, { result });
     }
 
     if (this._messages[id].subscription) {
