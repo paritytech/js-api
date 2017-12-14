@@ -113,6 +113,10 @@ class Manager {
   }
 
   unsubscribe (subscriptionId) {
+    if (this._api.isPubSub) {
+      return this._api.pubsub.unsubscribe(subscriptionId);
+    }
+
     return new Promise((resolve, reject) => {
       if (!this.subscriptions[subscriptionId]) {
         reject(new Error(`Cannot find subscription ${subscriptionId}`));
