@@ -1,7 +1,7 @@
 {
   "name": "@parity/api",
   "description": "The Parity Promise-based API library for interfacing with Ethereum over RPC",
-  "version": "2.1.11",
+  "version": "2.1.12",
   "main": "lib/index.js",
   "author": "Parity Team <admin@parity.io>",
   "maintainers": [
