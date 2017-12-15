@@ -35,6 +35,10 @@ class Signer extends PubsubBase {
         : callback(null, data.map(outSignerRequest));
     });
   }
+
+  requestsToConfirm (callback) {
+    return this.pendingRequests(callback);
+  }
 }
 
 module.exports = Signer;
