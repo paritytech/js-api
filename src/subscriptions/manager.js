@@ -85,6 +85,7 @@ class Manager {
 
           resolve(this._api.pubsub[fnSection][fnName](callback));
         } catch (error) {
+          console.error('Unable to find subscriptionName', subscriptionName);
           reject(error);
         }
 
